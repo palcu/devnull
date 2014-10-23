@@ -4,22 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "watch": "watchify src/game.jsx -o build/bundle.js",
+    "lint": "gulp lint"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "flux": "^2.0.1",
+    "json-markup": "^0.1.6",
     "react": "^0.11.2"
   },
   "browserify": {
     "transform": [
       "reactify"
     ]
-  },
-  "scripts": {
-    "watch": "watchify src/game.jsx -o build/bundle.js",
-    "lint": "gulp lint"
   },
   "devDependencies": {
     "browserify": "^6.1.0",

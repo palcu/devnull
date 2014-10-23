@@ -3,18 +3,20 @@
 
 
 var React = require('react'),
+    Party = require('./components/party.jsx'),
     CharTemplate = require('./components/chartemplate.jsx');
 
-var Hello = React.createClass({
+var Game = React.createClass({
   render: function() {
-    return <div>
-      Hello, {this.props.name}!
-      <CharTemplate />
+    return <div className="flex-container">
+      <div className="flex-item"><CharTemplate /></div>
+      <div className="flex-item"><Party /></div>
+      <div className="flex-item"></div>
     </div>;
   }
 });
 
 React.renderComponent(
-  <Hello name="Game" />,
-  document.getElementById('hello')
+  <Game />,
+  document.getElementById('container')
 );

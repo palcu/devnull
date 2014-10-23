@@ -5,24 +5,24 @@ var React = require('react'),
     getUrl = require('../lib/get-url.js'),
     jsonMarkup = require('json-markup');
 
-var CharTemplate = React.createClass({
+var Party = React.createClass({
   getInitialState: function() {
-    return {charTemplate: {}};
+    return {party: {}};
   },
 
   render: function() {
-    var rawMarkup = jsonMarkup(this.state.charTemplate);
+    var rawMarkup = jsonMarkup(this.state.party);
     return <div>
-      <p>Character template</p>
+      <p>Party</p>
       <span dangerouslySetInnerHTML={{__html: rawMarkup}} />;
     </div>;
   },
 
   componentDidMount: function() {
-    $.get(getUrl('getchartemplate'), function(response){
-      this.setState({charTemplate: response});
+    $.get(getUrl('getparty'), function(response){
+      this.setState({party: response});
     }.bind(this));
   }
 });
 
-module.exports = CharTemplate;
+module.exports = Party;
