@@ -7,11 +7,11 @@ var React = require('react'),
 
 var Level = React.createClass({
   getInitialState: function() {
-    return {currentChar: {}};
+    return {level: {}};
   },
 
   render: function() {
-    var rawMarkup = jsonMarkup(this.state.currentChar);
+    var rawMarkup = jsonMarkup(this.state.level);
     return <div>
       <p>Level</p>
       <span dangerouslySetInnerHTML={{__html: rawMarkup}} />;
@@ -30,7 +30,8 @@ var Level = React.createClass({
     if (this.props.currentChar) {
       $.get(getUrl('scan', this.props.currentChar), function(response){
         delete response.mid;
-        this.setState({currentChar: response});
+        this.setState({level: response});
+        this.props.onReceiveLevel(response);
       }.bind(this));
     }
   }

@@ -12,6 +12,7 @@
   "dependencies": {
     "flux": "^2.0.1",
     "json-markup": "^0.1.6",
+    "lodash": "^2.4.1",
     "mousetrap": "0.0.1",
     "react": "^0.11.2"
   },
