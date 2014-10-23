@@ -20,6 +20,7 @@ var CharTemplate = React.createClass({
 
   componentDidMount: function() {
     $.get(getUrl('getchartemplate'), function(response){
+      delete response.mid;
       this.setState({charTemplate: response});
     }.bind(this));
   }
