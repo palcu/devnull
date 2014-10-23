@@ -1,0 +1,29 @@
+{
+  "name": "devnull",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^0.11.2"
+  },
+  "browserify": {
+    "transform": [
+      "reactify"
+    ]
+  },
+  "devDependencies": {
+    "browserify": "^6.1.0",
+    "gulp": "^3.8.9",
+    "gulp-jshint": "^1.8.5",
+    "gulp-react": "^1.0.2",
+    "jquery": "^2.1.1",
+    "jshint-stylish": "^1.0.0",
+    "reactify": "^0.14.0",
+    "vinyl-source-stream": "^1.0.0"
+  }
+}
