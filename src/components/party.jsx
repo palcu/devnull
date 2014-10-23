@@ -3,7 +3,8 @@
 var React = require('react'),
     $ = require('jquery'),
     getUrl = require('../lib/get-url.js'),
-    Character = require('./character.jsx');
+    Character = require('./character.jsx'),
+    Constants = require('../constants.js');
 
 var Party = React.createClass({
   getInitialState: function() {
@@ -25,9 +26,8 @@ var Party = React.createClass({
   },
 
   componentDidMount: function() {
-    setInterval(this._getParty, 1000);
+    setInterval(this._getParty, Constants.PARTY_INTERVAL);
   },
-
 
   componentWillReceiveProps: function() {
     this._getParty();

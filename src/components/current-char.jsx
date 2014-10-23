@@ -3,7 +3,8 @@
 var React = require('react'),
     $ = require('jquery'),
     getUrl = require('../lib/get-url.js'),
-    jsonMarkup = require('json-markup');
+    jsonMarkup = require('json-markup'),
+    Constants = require('../constants.js');
 
 var CurrentChar = React.createClass({
   getInitialState: function() {
@@ -23,7 +24,7 @@ var CurrentChar = React.createClass({
   },
 
   componentDidMount: function() {
-    setInterval(this._getChar, 1000);
+    setInterval(this._getChar, Constants.CURRENT_CHAR_INTERVAL);
   },
 
   _getChar: function() {

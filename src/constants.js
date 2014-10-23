@@ -1,0 +1,5 @@
+module.exports = {
+  CURRENT_CHAR_INTERVAL: 1000,
+  SCAN_INTERVAL: 1000,
+  PARTY_INTERVAL: 1000
+};

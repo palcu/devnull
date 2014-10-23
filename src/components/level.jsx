@@ -3,7 +3,8 @@
 var React = require('react'),
     $ = require('jquery'),
     getUrl = require('../lib/get-url.js'),
-    jsonMarkup = require('json-markup');
+    jsonMarkup = require('json-markup'),
+    Constants = require('../constants.js');
 
 var Level = React.createClass({
   getInitialState: function() {
@@ -19,7 +20,7 @@ var Level = React.createClass({
   },
 
   componentDidMount: function() {
-    setInterval(this._getLevel, 1000);
+    setInterval(this._getLevel, Constants.SCAN_INTERVAL);
   },
 
   componentWillReceiveProps: function() {
