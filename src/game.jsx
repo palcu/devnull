@@ -1,5 +1,5 @@
 /** @jsx React.DOM */
-/* global document */
+/* global document, window */
 
 
 var React = require('react'),
@@ -8,7 +8,7 @@ var React = require('react'),
     CurrentCharacter = require('./components/current-char.jsx'),
     Level = require('./components/level.jsx'),
     ControlCharMixin = require('./mixins/control-char.js'),
-    Map = require('./components/map.jsx'),
+    BigMap = require('./components/big-map.jsx'),
     _ = require('lodash'),
     $ = require('jquery');
 
@@ -18,7 +18,7 @@ var Game = React.createClass({
   getInitialState: function() {
     var m = [];
     for (var i=0; i<100; i++) {
-      m.push([])
+      m.push([]);
       for (var j=0; j<100; j++) {
         m[i].push(0);
       }
@@ -48,7 +48,7 @@ var Game = React.createClass({
                onReceiveLevel={this.onReceiveLevel} />
       </div>
       <div className="flex-map">
-        <Map area={this.state.bigMap}
+        <BigMap area={this.state.bigMap}
              currentX={this.state.currentX}
              currentY={this.state.currentY}
              cornerLeftTop={this.state.cornerLeftTop}
@@ -64,9 +64,11 @@ var Game = React.createClass({
   onReceiveLevel: function(level) {
     var nextMap = _.clone(this.state.bigMap);
     var receivedMap = level.area;
-    for (var i=0; i<receivedMap[0].length; i++)
-      for (var j=0; j<receivedMap.length; j++)
+    for (var i=0; i<receivedMap[0].length; i++) {
+      for (var j=0; j<receivedMap.length; j++) {
         nextMap[level.bx + i][level.by + j] = receivedMap[i][j];
+      }
+    }
     this.setState({bigMap: nextMap});
   }
 });

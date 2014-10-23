@@ -3,7 +3,7 @@
 var React = require('react'),
     cx = require('react/addons').addons.classSet;
 
-var Map = React.createClass({
+var BigMap = React.createClass({
   getDefaultProps: function() {
     return {area: [[]]};
   },
@@ -14,8 +14,8 @@ var Map = React.createClass({
     for (var i=this.props.cornerLeftTop.x; i<=this.props.cornerRightBottom.x; i++) {
       var items = [];
       for (var j=this.props.cornerLeftTop.y; j<=this.props.cornerRightBottom.y; j++) {
-        var isCharacter = (i == this.props.currentX &&
-                           j == this.props.currentY)
+        var isCharacter = (i === this.props.currentX &&
+                           j === this.props.currentY);
         var classes = cx({
           'character': isCharacter
         });
@@ -29,4 +29,4 @@ var Map = React.createClass({
   }
 });
 
-module.exports = Map;
+module.exports = BigMap;

@@ -86,10 +86,11 @@ var CreateCharacter = React.createClass({
   _getSerialisation: function() {
     var args = [],
         qualities = ['name', 'str', 'con', 'dex', 'int', 'wis'];
-    for (var i in qualities) {
-      var quality = qualities[i];
+
+    qualities.forEach(function (quality) {
       args.push(quality + ':' + this.state[quality]);
-    }
+    }.bind(this));
+
     return args.join(',');
   }
 });
