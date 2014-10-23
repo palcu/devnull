@@ -28,6 +28,8 @@ var Game = React.createClass({
       currentChar: "",
       maxX: 50,
       maxY: 50,
+      cornerLeftTop: {x:0, y:0},
+      cornerRightBottom: {x:4, y:4},
       bigMap: m,
       currentX: 0,
       currentY: 0
@@ -43,13 +45,15 @@ var Game = React.createClass({
       <div className="flex-item">
         <Party onCallback={this.onCharacterSelect} />
         <CurrentCharacter currentChar={this.state.currentChar} />
+        <Level currentChar={this.state.currentChar}
+               onReceiveLevel={this.onReceiveLevel} />
       </div>
       <div className="flex-map">
         <Map area={this.state.bigMap}
              currentX={this.state.currentX}
-             currentY={this.state.currentY} />
-        <Level currentChar={this.state.currentChar}
-               onReceiveLevel={this.onReceiveLevel} />
+             currentY={this.state.currentY}
+             cornerLeftTop={this.state.cornerLeftTop}
+             cornerRightBottom={this.state.cornerRightBottom} />
       </div>
     </div>;
   },

@@ -9,22 +9,22 @@ var Map = React.createClass({
   },
 
   render: function() {
-    var table = <table></table>;
+    var rows = [];
 
-    return <table>
-      {this.props.area.map(function(row, i) {
-        return <tr key={i}>
-          {row.map(function(cell, j) {
-            var isCharacter = (i == this.props.currentX &&
-                               j == this.props.currentY)
-            var classes = cx({
-              'character': isCharacter
-            });
-            return <td className={classes} key={j}>{cell}</td>;
-          }.bind(this))}
-        </tr>;
-      }.bind(this))}
-    </table>;
+    for (var i=this.props.cornerLeftTop.x; i<=this.props.cornerRightBottom.x; i++) {
+      var items = [];
+      for (var j=this.props.cornerLeftTop.y; j<=this.props.cornerRightBottom.y; j++) {
+        var isCharacter = (i == this.props.currentX &&
+                           j == this.props.currentY)
+        var classes = cx({
+          'character': isCharacter
+        });
+        items.push(<td className={classes} key={j}>{this.props.area[i][j]}</td>);
+      }
+      rows.push(<tr>{items}</tr>);
+    }
+
+    return <table>{rows}</table>;
   }
 });
 
