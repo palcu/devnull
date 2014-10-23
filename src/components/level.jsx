@@ -18,7 +18,15 @@ var Level = React.createClass({
     </div>;
   },
 
+  componentDidMount: function() {
+    setInterval(this._getLevel, 10000);
+  },
+
   componentWillReceiveProps: function() {
+    this._getLevel();
+  },
+
+  _getLevel: function() {
     if (this.props.currentChar) {
       $.get(getUrl('scan', this.props.currentChar), function(response){
         delete response.mid;

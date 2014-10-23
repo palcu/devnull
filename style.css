@@ -6,6 +6,10 @@
   flex: 1;
 }
 
+.flex-map {
+  flex: 2;
+}
+
 /* JSON */
 .json-markup {
   line-height: 17px;

@@ -7,9 +7,12 @@ var React = require('react'),
     CharTemplate = require('./components/chartemplate.jsx'),
     CreateCharacter = require('./components/create-char.jsx'),
     CurrentCharacter = require('./components/current-char.jsx'),
-    Level = require('./components/level.jsx');
+    Level = require('./components/level.jsx'),
+    ControlCharMixin = require('./mixins/control-char.js');
 
 var Game = React.createClass({
+  mixins: [ControlCharMixin],
+
   getInitialState: function() {
     return {currentChar: ""};
   },
@@ -24,7 +27,7 @@ var Game = React.createClass({
         <Party onCallback={this.onCharacterSelect} />
         <CurrentCharacter currentChar={this.state.currentChar} />
       </div>
-      <div className="flex-item">
+      <div className="flex-map">
         <Level currentChar={this.state.currentChar} />
       </div>
     </div>;
