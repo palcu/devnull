@@ -2,13 +2,19 @@ var browserify = require('browserify'),
     gulp = require('gulp'),
     react = require('gulp-react'),
     source = require('vinyl-source-stream'),
-    jshint = require('gulp-jshint');
+    jshint = require('gulp-jshint'),
+    glob = require('glob');
 
-var FILES = 'src/**';
+var FILES = './src/**/*.jsx';
 
 gulp.task('build', function() {
-  return browserify('./src/game.jsx')
-    .bundle()
+  var bundler = browserify();
+
+  glob.sync(FILES).forEach(function(file) {
+    console.log(file);
+    bundler.require(file)
+  })
+  return bundler.bundle()
     .pipe(source('bundle.js'))
     .pipe(gulp.dest('./build/'));
 });

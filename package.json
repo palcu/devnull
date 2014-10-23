@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "flux": "^2.0.1",
     "react": "^0.11.2"
   },
   "browserify": {
@@ -16,14 +17,20 @@
       "reactify"
     ]
   },
+  "scripts": {
+    "watch": "watchify src/game.jsx -o build/bundle.js",
+    "lint": "gulp lint"
+  },
   "devDependencies": {
     "browserify": "^6.1.0",
+    "glob": "^4.0.6",
     "gulp": "^3.8.9",
     "gulp-jshint": "^1.8.5",
     "gulp-react": "^1.0.2",
     "jquery": "^2.1.1",
     "jshint-stylish": "^1.0.0",
     "reactify": "^0.14.0",
-    "vinyl-source-stream": "^1.0.0"
+    "vinyl-source-stream": "^1.0.0",
+    "watchify": "^2.0.0"
   }
 }
