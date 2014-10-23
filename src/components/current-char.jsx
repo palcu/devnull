@@ -13,7 +13,7 @@ var CurrentChar = React.createClass({
   render: function() {
     var rawMarkup = jsonMarkup(this.state.currentChar);
     return <div>
-      <p>Current Character</p>
+      <h1>Current Character</h1>
       <span dangerouslySetInnerHTML={{__html: rawMarkup}} />;
     </div>;
   },

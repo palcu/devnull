@@ -18,7 +18,7 @@ var CreateCharacter = React.createClass({
 
   render: function() {
     return <form onSubmit={this.handleSubmit}>
-      <p>Create Character</p>
+      <h1>Create Character</h1>
       <div className="form-section">
         <label>Name</label>
         <input type="text" value={this.state.name} onChange={this.onNameChange} />

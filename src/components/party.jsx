@@ -12,7 +12,7 @@ var Party = React.createClass({
 
   render: function() {
     return <div>
-      <p>Party</p>
+      <h1>Party</h1>
       <ul>
         {this.state.party.map(function(character, index) {
           return <Character name={character}

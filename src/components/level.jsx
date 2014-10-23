@@ -13,7 +13,7 @@ var Level = React.createClass({
   render: function() {
     var rawMarkup = jsonMarkup(this.state.level);
     return <div>
-      <p>Level</p>
+      <h1>Level</h1>
       <span dangerouslySetInnerHTML={{__html: rawMarkup}} />;
     </div>;
   },

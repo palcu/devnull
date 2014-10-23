@@ -19,9 +19,10 @@ var Map = React.createClass({
         var classes = cx({
           'character': isCharacter
         });
-        items.push(<td className={classes} key={j}>{this.props.area[i][j]}</td>);
+        var key = i + '-' + j;
+        items.push(<td className={classes} key={key}>{this.props.area[i][j]}</td>);
       }
-      rows.push(<tr>{items}</tr>);
+      rows.push(<tr key={i}>{items}</tr>);
     }
 
     return <table>{rows}</table>;

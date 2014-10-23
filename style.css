@@ -1,3 +1,11 @@
+body {
+  font-family: 'Consolas', sans-serif;
+}
+
+h1 {
+  font-size: 110%;
+}
+
 .flex-container {
   display: flex;
 }
@@ -11,7 +19,20 @@
 }
 
 .character {
-  font-weight: bolder
+  font-weight: bold;
+}
+
+label {
+  margin-right: 10px;
+}
+
+.form-section input {
+  width: 40px;
+}
+
+footer {
+  text-align: center;
+  font-size: 50%;
 }
 
 /* JSON */

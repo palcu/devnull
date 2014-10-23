@@ -4,13 +4,13 @@
 
 var React = require('react'),
     Party = require('./components/party.jsx'),
-    CharTemplate = require('./components/chartemplate.jsx'),
     CreateCharacter = require('./components/create-char.jsx'),
     CurrentCharacter = require('./components/current-char.jsx'),
     Level = require('./components/level.jsx'),
     ControlCharMixin = require('./mixins/control-char.js'),
     Map = require('./components/map.jsx'),
-    _ = require('lodash');
+    _ = require('lodash'),
+    $ = require('jquery');
 
 var Game = React.createClass({
   mixins: [ControlCharMixin],
@@ -40,7 +40,6 @@ var Game = React.createClass({
     return <div className="flex-container">
       <div className="flex-item">
         <CreateCharacter />
-        <CharTemplate />
       </div>
       <div className="flex-item">
         <Party onCallback={this.onCharacterSelect} />
@@ -73,8 +72,9 @@ var Game = React.createClass({
 });
 
 
-// For the toolbar
+// Because you never know
 window.React = React;
+window.$ = $;
 
 React.renderComponent(
   <Game />,
