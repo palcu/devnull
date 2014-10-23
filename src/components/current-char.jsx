@@ -19,6 +19,14 @@ var CurrentChar = React.createClass({
   },
 
   componentWillReceiveProps: function() {
+    this._getChar();
+  },
+
+  componentDidMount: function() {
+    setInterval(this._getChar, 1000);
+  },
+
+  _getChar: function() {
     if (this.props.currentChar) {
       $.get(getUrl('getcharacter', this.props.currentChar), function(response){
         delete response.mid;

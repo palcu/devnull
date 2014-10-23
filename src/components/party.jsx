@@ -2,7 +2,8 @@
 
 var React = require('react'),
     $ = require('jquery'),
-    getUrl = require('../lib/get-url.js');
+    getUrl = require('../lib/get-url.js'),
+    Character = require('./character.jsx');
 
 var Party = React.createClass({
   getInitialState: function() {
@@ -10,27 +11,42 @@ var Party = React.createClass({
   },
 
   render: function() {
-
     return <div>
       <p>Party</p>
       <ul>
         {this.state.party.map(function(character, index) {
-          return <li key={index} ref={character} onClick={this.onCharacterClick}>
-            {character}
-          </li>;
+          return <Character name={character}
+                     key={index}
+                     onCharacterSelect={this.onCharacterSelect}
+                     onCharacterDelete={this.onCharacterDelete} />;
         }.bind(this))}
       </ul>
     </div>;
   },
 
   componentDidMount: function() {
-    $.get(getUrl('getparty'), function(response){
-      this.setState({party: response.characters});
+    setInterval(this._getParty, 1000);
+  },
+
+
+  componentWillReceiveProps: function() {
+    this._getParty();
+  },
+
+  onCharacterSelect: function(character) {
+    this.props.onCallback(character);
+  },
+
+  onCharacterDelete: function(character) {
+    $.get(getUrl('deletecharacter', character), function(response){
+      console.log(response);
     }.bind(this));
   },
 
-  onCharacterClick: function(event) {
-    this.props.onCallback(event.target.textContent);
+  _getParty: function() {
+    $.get(getUrl('getparty'), function(response){
+      this.setState({party: response.characters});
+    }.bind(this));
   }
 });
 

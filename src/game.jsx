@@ -38,6 +38,10 @@ var Game = React.createClass({
   }
 });
 
+
+// For the toolbar
+window.React = React;
+
 React.renderComponent(
   <Game />,
   document.getElementById('container')

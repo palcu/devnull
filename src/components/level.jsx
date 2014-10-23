@@ -19,7 +19,7 @@ var Level = React.createClass({
   },
 
   componentDidMount: function() {
-    setInterval(this._getLevel, 10000);
+    setInterval(this._getLevel, 1000);
   },
 
   componentWillReceiveProps: function() {
