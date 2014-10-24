@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "watch": "watchify src/game.jsx -o build/bundle.js",
+    "watch": "watchify src/all-that-is.jsx -o build/bundle.js",
     "lint": "gulp lint"
   },
   "author": "",

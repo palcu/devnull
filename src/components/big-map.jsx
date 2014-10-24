@@ -43,7 +43,7 @@ var BigMap = React.createClass({
   },
 
   _getEntitiesCollection: function() {
-    v = []
+    var v = [];
     for (var entity in this.props.entities) {
       v.push(this.props.entities[entity]);
     }

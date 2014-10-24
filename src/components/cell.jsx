@@ -1,7 +1,6 @@
 /** @jsx React.DOM */
 
 var React = require('react'),
-    $ = require('jquery'),
     cx = require('react/addons').addons.classSet;
 
 

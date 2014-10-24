@@ -37,7 +37,7 @@ var Level = React.createClass({
         if (response.updates.length) {
           response.updates.forEach(function(update) {
             console.log(update);
-          })
+          });
         }
 
         this.props.onReceiveLevel(response);
@@ -50,7 +50,7 @@ var Level = React.createClass({
   _displayLevel: function(level, currentChar) {
     delete level.area;
     _.remove(level.entities, function(entity) {
-      return entity._id == currentChar
+      return entity._id === currentChar;
     });
     this.setState({level: level});
   }
