@@ -15,10 +15,10 @@ var Inventory = React.createClass({
     }.bind(this))
 
     return <div>
-      <h1>Inventory</h1>
+      <h1>Inventory ({this.props.items.length} / 10)</h1>
       <p><a href="#" onClick={this.props.onUnwieldArmor}>Unwield Armor</a></p>
       <p><a href="#" onClick={this.props.onUnwieldWeapon}>Unwield Weapon</a></p>
-      <ul>
+      <ul className="inventory">
         {items}
       </ul>
     </div>;

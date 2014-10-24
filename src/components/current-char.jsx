@@ -18,15 +18,17 @@ var CurrentChar = React.createClass({
   render: function() {
     var rawMarkup = jsonMarkup(this.state.currentChar);
     return <div>
-      <h1>Current Character</h1>
-      <span dangerouslySetInnerHTML={{__html: rawMarkup}} />
       <Inventory items={this.state.inventory}
                  onDrop={this.onDrop}
                  onRepair={this.onRepair}
                  onUse={this.onUse}
                  onUnwieldArmor={this.onUnwieldArmor}
                  onUnwieldWeapon={this.onUnwieldWeapon} />
-    </div>;
+      <h1>Current Character</h1>
+      {this.state.canUpgrade ? <p className="warning">Upgrade character</p> : ''}
+      <p className="info">HP {this.state.currentHP}</p>
+      <span dangerouslySetInnerHTML={{__html: rawMarkup}} />
+    </div>
   },
 
   componentDidMount: function() {
@@ -72,7 +74,7 @@ var CurrentChar = React.createClass({
       $.get(getUrl('getcharacter', this.props.currentChar), function(response){
         var toDisplay = {};
         ['id', 'exp', 'level', 'str', 'int', 'wis', 'dex', 'con', 'x', 'y',
-         'hp', 'ac', 'alloc', 'speed'].forEach(function(key) {
+         'ac', 'speed'].forEach(function(key) {
           toDisplay[key] = response[key]
          });
          toDisplay['weapon'] = response['wieldedweaponname']
@@ -81,6 +83,8 @@ var CurrentChar = React.createClass({
         this.setState({
           currentWeapon: response.wieldedweapon,
           currentArmor: response.equippedarmor,
+          canUpgrade: response.alloc > 0,
+          currentHP: response.hp,
           currentChar: toDisplay,
           inventory: response.inventory
         });

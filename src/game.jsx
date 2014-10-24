@@ -32,13 +32,13 @@ var Game = React.createClass({
   render: function() {
     return <div className="flex-container">
       <div className="flex-item">
+        <CreateCharacter characterId={this.props.currentChar} />
         <Level currentChar={this.props.currentChar}
                onReceiveLevel={this.onReceiveLevel} />
-        <CreateCharacter characterId={this.props.currentChar} />
       </div>
       <div className="flex-item">
-        <Party onCallback={this.props.onCharacterSelect} />
         <CurrentCharacter currentChar={this.props.currentChar} />
+        <Party onCallback={this.props.onCharacterSelect} />
       </div>
       <div className="flex-map">
         <BigMap area={this.state.bigMap}

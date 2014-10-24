@@ -71,6 +71,27 @@ footer {
   background-color: green;
 }
 
+.info {
+  font-size: 120%;
+  font-weight: bold;
+}
+
+.warning {
+  color: red;
+  font-size: 120%;
+  font-weight: bold;
+}
+
+.inventory {
+  margin:0;
+  padding: 0;
+}
+
+.inventory li {
+  margin: 0;
+  padding: 0;
+}
+
 /* JSON */
 .json-markup {
   line-height: 17px;

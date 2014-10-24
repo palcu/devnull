@@ -25,8 +25,11 @@ var InventoryItem = React.createClass({
     if ($.isEmptyObject(this.state.attributes)) {
       return <li>{this.props.id}</li>;
     }
-    var repairButton = (<a onClick={this.onRepair} href="#">- [Repair]</a>);
-    var name = (<span onClick={this.displayItem}>{this.state.attributes.name} - </span>)
+    var repairButton = ''
+    if (this.canBeRepaired()){
+      var repairButton = (-<a onClick={this.onRepair} href="#">[Repair]</a>);
+    }
+    var name = (<span onClick={this.displayItem}>{this.state.attributes.name}<br /></span>)
     return <li>
       {name}<a onClick={this.onDrop} href="#">[Drop]</a>
       {'-'}<a onClick={this.onUse} href="#">[Use]</a>{repairButton}
