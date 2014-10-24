@@ -21,7 +21,7 @@ var CurrentChar = React.createClass({
       <h1>Current Character</h1>
       <span dangerouslySetInnerHTML={{__html: rawMarkup}} />
       <Inventory items={this.state.inventory}
-                onDrop={this.onDrop}
+                 onDrop={this.onDrop}
                  onUse={this.onUse} />
     </div>;
   },

@@ -24,6 +24,23 @@ module.exports = {
       $.get(getUrl('move', this.state.currentChar, 'down'), this._parseMoveResponse);
     }.bind(this));
 
+    Mousetrap.bind('w', function(e) {
+      e.preventDefault();
+      $.get(getUrl('dig', 'left', this.state.currentChar), this._parseMoveResponse);
+    }.bind(this));
+    Mousetrap.bind('a', function(e) {
+      e.preventDefault();
+      $.get(getUrl('dig', 'up', this.state.currentChar), this._parseMoveResponse);
+    }.bind(this));
+    Mousetrap.bind('s', function(e) {
+      e.preventDefault();
+      $.get(getUrl('dig', 'right', this.state.currentChar), this._parseMoveResponse);
+    }.bind(this));
+    Mousetrap.bind('d', function(e) {
+      e.preventDefault();
+      $.get(getUrl('dig', 'down', this.state.currentChar), this._parseMoveResponse);
+    }.bind(this));
+
     Mousetrap.bind('i', function(e) {
       e.preventDefault();
       $.get(getUrl('move', this.state.currentChar, 'upleft'), this._parseMoveResponse);
@@ -47,13 +64,13 @@ module.exports = {
         console.log(resp);
       })
     }.bind(this));
-    Mousetrap.bind('u', function(e) {
+    Mousetrap.bind('z', function(e) {
       e.preventDefault();
       $.get(getUrl('levelup', this.state.currentChar), function(resp) {
         console.log(resp);
       })
     }.bind(this));
-    Mousetrap.bind('d', function(e) {
+    Mousetrap.bind('x', function(e) {
       e.preventDefault();
       $.get(getUrl('leveldown', this.state.currentChar), function(resp) {
         console.log(resp);

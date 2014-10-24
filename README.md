@@ -3,8 +3,9 @@ Don't forget to make `session-key.js` from the example.
 # Keyboard Shorcuts
 
 * `up/down/left/right` - move straight
+* `w/a/s/d` - dig
 * `i/o/k/l` - move diagonally
-* `u/d` - up/down staircase
+* `z/x` - up/down staircase
 
 ## Still to implement
 
