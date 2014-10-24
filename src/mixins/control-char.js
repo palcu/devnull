@@ -28,11 +28,11 @@ module.exports = {
   },
 
   _parseResponse: function(response) {
-    if ($.type(response.success) === 'object') {
+    if ($.type(response.success) === 'object' && 'movedto' in response.success) {
       var coords = response.success.movedto;
       console.log('moved to (' + coords.x + ', ' + coords.y + ')');
     } else {
-      console.log(response.success);
+      console.log(JSON.stringify(response.success));
     }
   }
 };

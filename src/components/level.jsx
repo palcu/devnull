@@ -4,7 +4,8 @@ var React = require('react'),
     $ = require('jquery'),
     getUrl = require('../lib/get-url.js'),
     jsonMarkup = require('json-markup'),
-    Constants = require('../constants.js');
+    Constants = require('../constants.js'),
+    _ = require('lodash');
 
 var Level = React.createClass({
   getInitialState: function() {
@@ -32,10 +33,26 @@ var Level = React.createClass({
     if (currentChar) {
       $.get(getUrl('scan', currentChar), function(response){
         delete response.mid;
-        this.setState({level: response});
+
+        if (response.updates.length) {
+          response.updates.forEach(function(update) {
+            console.log(update);
+          })
+        }
+
         this.props.onReceiveLevel(response);
+        this._displayLevel(response, currentChar);
+
       }.bind(this));
     }
+  },
+
+  _displayLevel: function(level, currentChar) {
+    delete level.area;
+    _.remove(level.entities, function(entity) {
+      return entity._id == currentChar
+    });
+    this.setState({level: level});
   }
 });
 

@@ -41,7 +41,7 @@ var Cell = React.createClass({
     if (this.props.number === 0 || this.props.number === 16) {
       return '$';
     }
-    return '?';
+    return ' ';
   }
 });
 
