@@ -1,6 +1,7 @@
 var Mousetrap = require('mousetrap'),
     getUrl = require('../lib/get-url.js'),
-    $ = require('jquery');
+    $ = require('jquery'),
+    log = require('log-with-style');
 
 // TODO @palcu: take the response and pass it somehow to level component
 // TODO @palcu: DRY this fucking code
@@ -83,7 +84,16 @@ module.exports = {
       var coords = response.success.movedto;
       console.log('moved to (' + coords.x + ', ' + coords.y + ')');
     } else {
-      console.log(JSON.stringify(response.success));
+      var msg = JSON.stringify(response.success);
+      if (msg && msg.indexOf('HP 0') > -1) {
+        var re = /\[(.*?)\]/g;
+        var info = [];
+        while (text = re.exec(msg)) {
+          info.push(text)
+        }
+        log('[c="font-family: \'Helvetica Neue\', Helvetica, Arial, sans-serif; color: #fff; font-size: 20px; padding: 15px 20px; background: #444; border-radius: 4px; line-height: 100px; text-shadow: 0 1px #000"]Dead[c]');
+      }
+      console.log(msg);
     }
   }
 };

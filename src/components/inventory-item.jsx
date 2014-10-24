@@ -25,15 +25,26 @@ var InventoryItem = React.createClass({
     if ($.isEmptyObject(this.state.attributes)) {
       return <li>{this.props.id}</li>;
     }
+    var repairButton = (<a onClick={this.onRepair} href="#">- [Repair]</a>);
+    var name = (<span onClick={this.displayItem}>{this.state.attributes.name} - </span>)
     return <li>
-      {this.state.attributes.name + '-'}<a onClick={this.onDrop} href="#">[Drop]</a>
-      {'-'}<a onClick={this.onUse} href="#">[Use]</a>
+      {name}<a onClick={this.onDrop} href="#">[Drop]</a>
+      {'-'}<a onClick={this.onUse} href="#">[Use]</a>{repairButton}
     </li>;
   },
 
   onDrop: function(event) {
     event.preventDefault();
     this.props.onDrop(this.props.id);
+  },
+
+  onRepair: function(event) {
+    event.preventDefault();
+    this.props.onRepair(this.props.id);
+  },
+
+  displayItem: function() {
+    console.log(this.state.attributes);
   },
 
   onUse: function(event) {
@@ -45,6 +56,11 @@ var InventoryItem = React.createClass({
     } else if (this.state.attributes.subtype === 'potion') {
       this.props.onUse('quaff', this.props.id);
     }
+  },
+
+  canBeRepaired: function() {
+    return (this.state.attributes.subtype === 'armor' ||
+            this.state.attributes.subtype === 'weapon');
   }
 });
 

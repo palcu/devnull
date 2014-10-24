@@ -10,7 +10,8 @@ var Inventory = React.createClass({
       items.push(<InventoryItem key={item}
                                 id={item}
                                 onDrop={this.props.onDrop}
-                                onUse={this.props.onUse} />);
+                                onUse={this.props.onUse}
+                                onRepair={this.props.onRepair} />);
     }.bind(this))
 
     return <div>

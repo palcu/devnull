@@ -34,7 +34,7 @@ var Game = React.createClass({
       <div className="flex-item">
         <Level currentChar={this.props.currentChar}
                onReceiveLevel={this.onReceiveLevel} />
-        <CreateCharacter />
+        <CreateCharacter characterId={this.props.currentChar} />
       </div>
       <div className="flex-item">
         <Party onCallback={this.props.onCharacterSelect} />
@@ -213,6 +213,10 @@ var Game = React.createClass({
       }
     }
     return m;
+  },
+
+  _isDead: function(monster) {
+    console.log(monster);
   }
 });
 

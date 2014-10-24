@@ -14,10 +14,11 @@ Don't forget to make `session-key.js` from the example.
 - [x] use
 - [x] dig
 - [x] unwield
-- [ ] repair inventory items
-- [ ] when a monster is killed, issue a notification and remove it from the map
-- [ ] when an item is picked, issue a notification and remove it from the map
-- [ ] level up
+- [x] repair inventory items
+- [x] clicking on item gives me details
+- [x] allocate points
+- [x] when a monster is killed, issue a notification
+- [x] level up
 - [ ] highscores
 - [ ] planeshift
 

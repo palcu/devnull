@@ -5,7 +5,8 @@
 var React = require('react'),
     Game = require('./game.jsx'),
     $ = require('jquery'),
-    ControlCharMixin = require('./mixins/control-char.js');
+    ControlCharMixin = require('./mixins/control-char.js'),
+    log = require('log-with-style');
 
 var AllThatIs = React.createClass({
   mixins: [ControlCharMixin],
@@ -29,6 +30,7 @@ var AllThatIs = React.createClass({
 // Because you never know
 window.React = React;
 window.$ = $;
+window.log = log;
 
 React.renderComponent(
   <AllThatIs />,

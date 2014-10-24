@@ -22,6 +22,7 @@ var CurrentChar = React.createClass({
       <span dangerouslySetInnerHTML={{__html: rawMarkup}} />
       <Inventory items={this.state.inventory}
                  onDrop={this.onDrop}
+                 onRepair={this.onRepair}
                  onUse={this.onUse}
                  onUnwieldArmor={this.onUnwieldArmor}
                  onUnwieldWeapon={this.onUnwieldWeapon} />
@@ -58,6 +59,12 @@ var CurrentChar = React.createClass({
           function(response) {
             console.log(response);
           })
+  },
+
+  onRepair: function(id) {
+    $.get(getUrl('repair', id, this.state.currentChar.id), function(response) {
+      console.log(response);
+    });
   },
 
   _getChar: function() {

@@ -24,23 +24,23 @@ var CreateCharacter = React.createClass({
         <input type="text" value={this.state.name} onChange={this.onNameChange} />
       </div>
       <div className="form-section">
-        <label>Str</label>
+        <label onClick={this.onLevelUp}>str</label>
         <input type="text" value={this.state.str} onChange={this.onStrChange} />
       </div>
       <div className="form-section">
-        <label>Con</label>
+        <label onClick={this.onLevelUp}>con</label>
         <input type="text" value={this.state.con} onChange={this.onConChange} />
       </div>
       <div className="form-section">
-        <label>Dexterity</label>
+        <label onClick={this.onLevelUp}>dex</label>
         <input type="text" value={this.state.dex} onChange={this.onDexChange} />
       </div>
       <div className="form-section">
-        <label>Intelligence</label>
+        <label onClick={this.onLevelUp}>int</label>
         <input type="text" value={this.state.int} onChange={this.onIntChange} />
       </div>
       <div className="form-section">
-        <label>Wisdom</label>
+        <label onClick={this.onLevelUp}>wis</label>
         <input type="text" value={this.state.wis} onChange={this.onWisChange} />
       </div>
       <button onClick={this.onSubmit}>Create</button>
@@ -73,6 +73,13 @@ var CreateCharacter = React.createClass({
 
   onWisChange: function(event) {
     this.setState({wis: parseInt(event.target.value)});
+  },
+
+  onLevelUp: function(event) {
+    var quality = event.target.textContent;
+    $.get(getUrl('allocatepoints', quality, this.props.characterId), function(response) {
+      console.log(response);
+    });
   },
 
   onSubmit: function(event) {
