@@ -28,11 +28,11 @@ var Game = React.createClass({
       currentChar: "",
       maxX: 50,
       maxY: 50,
-      cornerLeftTop: {x:0, y:0},
-      cornerRightBottom: {x:4, y:4},
+      cornerLeftTop: null,
+      cornerRightBottom: null,
       bigMap: m,
-      currentX: 0,
-      currentY: 0
+      currentX: null,
+      currentY: null
     };
   },
 
@@ -62,14 +62,49 @@ var Game = React.createClass({
   },
 
   onReceiveLevel: function(level) {
+
     var nextMap = _.clone(this.state.bigMap);
     var receivedMap = level.area;
+
     for (var i=0; i<receivedMap[0].length; i++) {
       for (var j=0; j<receivedMap.length; j++) {
-        nextMap[level.bx + i][level.by + j] = receivedMap[i][j];
+        nextMap[level.bx + i][level.by + j] = receivedMap[j][i];
       }
     }
-    this.setState({bigMap: nextMap});
+
+    var nextCornerLeftTop = {},
+        nextCornerRightBottom = {};
+    if (this.state.cornerLeftTop) {
+      nextCornerLeftTop.x = Math.min(this.state.cornerLeftTop.x, level.bx);
+      nextCornerLeftTop.y = Math.min(this.state.cornerLeftTop.y, level.by);
+      nextCornerRightBottom.x = Math.max(this.state.cornerRightBottom.x,
+                                    level.bx + receivedMap.length - 1);
+      nextCornerRightBottom.y = Math.max(this.state.cornerRightBottom.y,
+                                    level.by + receivedMap[0].length - 1);
+    } else {
+      nextCornerLeftTop = {
+        x: level.bx,
+        y: level.by
+      };
+      nextCornerRightBottom = {
+        x: level.bx + receivedMap.length - 1,
+        y: level.by + receivedMap[0].length - 1
+      };
+    }
+    // console.table(nextMap)
+
+    this.setState({
+      bigMap: nextMap,
+      currentX: level.x,
+      currentY: level.y,
+      cornerLeftTop: nextCornerLeftTop,
+      cornerRightBottom: nextCornerRightBottom
+      // bigMap: level.area
+      // cornerLeftTop: {x: 0, y: 0},
+      // cornerRightBottom: {x:15, y: 15},
+      // currentX: 2,
+      // currentY: 2
+    });
   }
 });
 

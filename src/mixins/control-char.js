@@ -11,25 +11,25 @@ module.exports = {
   componentWillMount: function() {
     Mousetrap.bind('up', function(e) {
       e.preventDefault();
-      $.get(getUrl('move', this.state.currentChar, 'up'), function(response) {
+      $.get(getUrl('move', this.state.currentChar, 'left'), function(response) {
         console.log(response['success']);
       });
     }.bind(this));
     Mousetrap.bind('down', function(e) {
       e.preventDefault();
-      $.get(getUrl('move', this.state.currentChar, 'down'), function(response) {
+      $.get(getUrl('move', this.state.currentChar, 'right'), function(response) {
         console.log(response['success']);
       });
     }.bind(this));
     Mousetrap.bind('left', function(e) {
       e.preventDefault();
-      $.get(getUrl('move', this.state.currentChar, 'left'), function(response) {
+      $.get(getUrl('move', this.state.currentChar, 'up'), function(response) {
         console.log(response['success']);
       });
     }.bind(this));
     Mousetrap.bind('right', function(e) {
       e.preventDefault();
-      $.get(getUrl('move', this.state.currentChar, 'right'), function(response) {
+      $.get(getUrl('move', this.state.currentChar, 'down'), function(response) {
         console.log(response['success']);
       });
     }.bind(this));

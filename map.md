@@ -28,20 +28,20 @@ Trying to understand what the fuck are those numbers in the map.
 0,  = 0x0   = Nothing
 4,  = 0x4   = Corridor
 16, = 0x10  = Perimeter
-66, = 0x42  =
+66, = 0x42  = 101010
 70, = 0x46  =
 262 = 0x106 =
 514 = 0x202 =
 518 = 0x206 =
 589299744 = 0x23200020
 
-NOTHING     = 0x00000000;
-BLOCKED     = 0x00000001;
-ROOM        = 0x00000002;
-CORRIDOR    = 0x00000004;
-PERIMETER   = 0x00000010;
-ENTRANCE    = 0x00000020;
-ROOM_ID     = 0x0000FFC0;
+NOTHING     = 0x00000000; = 00000
+BLOCKED     = 0x00000001; = 00001
+ROOM        = 0x00000002; = 00011
+CORRIDOR    = 0x00000004; = 00100
+PERIMETER   = 0x00000010; = 01000
+ENTRANCE    = 0x00000020; = 10000
+ROOM_ID     = 0x0000FFC0; = 1111111111000000
 ARCH        = 0x00010000;
 DOOR        = 0x00020000;
 DOOR        = 0x00040000;

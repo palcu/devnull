@@ -23,13 +23,14 @@ var Level = React.createClass({
     setInterval(this._getLevel, Constants.SCAN_INTERVAL);
   },
 
-  componentWillReceiveProps: function() {
-    this._getLevel();
+  componentWillMount: function() {
+    // this._getLevel();
   },
 
-  _getLevel: function() {
-    if (this.props.currentChar) {
-      $.get(getUrl('scan', this.props.currentChar), function(response){
+  _getLevel: function(currentChar) {
+    currentChar = currentChar || this.props.currentChar;
+    if (currentChar) {
+      $.get(getUrl('scan', currentChar), function(response){
         delete response.mid;
         this.setState({level: response});
         this.props.onReceiveLevel(response);
