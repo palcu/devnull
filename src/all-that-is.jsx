@@ -6,7 +6,8 @@ var React = require('react'),
     Game = require('./game.jsx'),
     $ = require('jquery'),
     ControlCharMixin = require('./mixins/control-char.js'),
-    log = require('log-with-style');
+    log = require('log-with-style'),
+    getUrl = require('./lib/get-url.js');
 
 var AllThatIs = React.createClass({
   mixins: [ControlCharMixin],
@@ -31,6 +32,15 @@ var AllThatIs = React.createClass({
 window.React = React;
 window.$ = $;
 window.log = log;
+window.getHighScores = function() {
+  $.get(getUrl('gethighscores'), function(response) {
+    var top = [];
+    response.success.forEach(function(score) {
+      top.push({name: score.name, score: score.score})
+    })
+    console.table(top);
+  })
+}
 
 React.renderComponent(
   <AllThatIs />,

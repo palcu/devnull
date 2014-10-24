@@ -19,7 +19,7 @@ Don't forget to make `session-key.js` from the example.
 - [x] allocate points
 - [x] when a monster is killed, issue a notification
 - [x] level up
-- [ ] highscores
+- [x] highscores
 - [ ] planeshift
 
 ## Bugs
