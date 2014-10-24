@@ -17,6 +17,7 @@ var Game = React.createClass({
       maxX: 50,
       maxY: 50,
       entities: {},
+      items: {},
       locations: [],
       cornerLeftTop: null,
       cornerRightBottom: null,
@@ -46,7 +47,8 @@ var Game = React.createClass({
              cornerLeftTop={this.state.cornerLeftTop}
              cornerRightBottom={this.state.cornerRightBottom}
              entities={this.state.entities}
-             locations={this.state.locations} />
+             locations={this.state.locations}
+             items={this.state.items} />
       </div>
     </div>;
   },
@@ -55,6 +57,7 @@ var Game = React.createClass({
     this._parseMap(level);
     this._parseEntities(level);
     this._parseLocations(level);
+    this._parseItems(level);
   },
 
   _parseLocations: function(level) {
@@ -106,20 +109,40 @@ var Game = React.createClass({
       nextEntities[entity._id].last_updated = Date.now();
     });
 
-    nextEntities = this._removeDeadEntities(nextEntities);
+    nextEntities = this._removeOldStuff(nextEntities,
+                                        Constants.ENTITY_IS_REMOVED_INTERVAL);
 
     localStorage.setLocalStorageKeys(level.map, {entities: nextEntities});
     this.setState({entities: nextEntities});
   },
 
-  _removeDeadEntities: function(entities) {
-    for (var entity in entities) {
-      if (Date.now() - entities[entity].last_updated >
-            Constants.ENTITY_IS_REMOVED_INTERVAL) {
-        delete entities[entity];
+  _parseItems: function(level) {
+    var receivedItems = level.items;
+    var nextItems = {};
+    if (localStorage.isKeySaved(level.map, 'items') && this.state.firstStart) {
+      nextItems = localStorage.getLocalStorageKey(level.map, 'items');
+    } else if (this.state.currentMap === level.map) {
+      nextItems = _.clone(this.state.items);
+    }
+    receivedItems.forEach(function(item) {
+      nextItems[item._id] = item;
+      nextItems[item._id].last_updated = Date.now();
+    })
+
+    nextItems = this._removeOldStuff(nextItems,
+                                     Constants.ITEM_IS_REMOVED_INTERVAL)
+
+    localStorage.setLocalStorageKeys(level.map, {items: nextItems});
+    this.setState({items: nextItems});
+  },
+
+  _removeOldStuff: function(stuff, interval) {
+    for (var item in stuff) {
+      if (Date.now() - stuff[item].last_updated > interval) {
+        delete stuff[item];
       }
     }
-    return entities;
+    return stuff;
   },
 
   _parseMap: function(level) {

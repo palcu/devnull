@@ -16,7 +16,8 @@ var Cell = React.createClass({
       'unvisited': (elementInMap === '#'),
       'unwalkable': (elementInMap === '$'),
       'entity-monster': this.props.entity.type === 'monster',
-      'location': this.props.location
+      'location': this.props.location,
+      'item': this.props.item
     });
 
     return <td className={classes} onClick={this.cellOnClick}>
@@ -31,6 +32,9 @@ var Cell = React.createClass({
     }
     if (this.props.location) {
       console.log(this.props.location);
+    }
+    if (this.props.item) {
+      console.log(this.props.item);
     }
   },
 
@@ -53,6 +57,9 @@ var Cell = React.createClass({
         'stairsup': 'U'
       }
       return mapping[this.props.location.name];
+    }
+    if (this.props.item) {
+      return 'I';
     }
     return ' ';
   }

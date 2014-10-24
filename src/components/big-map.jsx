@@ -12,13 +12,15 @@ var BigMap = React.createClass({
   render: function() {
     if (this.props.cornerLeftTop) {
       var rows = [];
-      var entitiesCollection = this._getEntitiesCollection();
+      var entitiesCollection = this._getCollection(this.props.entities);
+      var itemsCollection = this._getCollection(this.props.items);
 
       for (var i=this.props.cornerLeftTop.x; i<=this.props.cornerRightBottom.x; i++) {
         var items = [];
         for (var j=this.props.cornerLeftTop.y; j<=this.props.cornerRightBottom.y; j++) {
           var entity = _.find(entitiesCollection, {x: i, y: j});
           var location = _.find(this.props.locations, {x: i, y: j});
+          var item = _.find(itemsCollection, {x: i, y: j});
           var key = i + '-' + j;
 
           var isMyCharacter = (i === this.props.currentX &&
@@ -27,7 +29,8 @@ var BigMap = React.createClass({
                            number={this.props.area[i][j]}
                            key={key}
                            entity={entity}
-                           location={location} />);
+                           location={location}
+                           item={item} />);
         }
         rows.push(<tr key={i}>{items}</tr>);
       }
@@ -44,10 +47,10 @@ var BigMap = React.createClass({
     return <div>"Waiting for character..."</div>;
   },
 
-  _getEntitiesCollection: function() {
+  _getCollection: function(objects) {
     var v = [];
-    for (var entity in this.props.entities) {
-      v.push(this.props.entities[entity]);
+    for (var obj in objects) {
+      v.push(objects[obj]);
     }
     return v;
   }
