@@ -21,7 +21,8 @@ var CurrentChar = React.createClass({
       <h1>Current Character</h1>
       <span dangerouslySetInnerHTML={{__html: rawMarkup}} />
       <Inventory items={this.state.inventory}
-                 onDrop={this.onDrop} />
+                onDrop={this.onDrop}
+                 onUse={this.onUse} />
     </div>;
   },
 
@@ -31,6 +32,12 @@ var CurrentChar = React.createClass({
 
   onDrop: function(id) {
     $.get(getUrl('drop', id, this.state.currentChar.id), function(response) {
+      console.log(response);
+    });
+  },
+
+  onUse: function(method, id) {
+    $.get(getUrl(method, id, this.state.currentChar.id), function(response) {
       console.log(response);
     });
   },

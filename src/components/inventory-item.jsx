@@ -25,13 +25,26 @@ var InventoryItem = React.createClass({
     if ($.isEmptyObject(this.state.attributes)) {
       return <li>{this.props.id}</li>;
     }
-    return <li>{this.state.attributes.name}-
-    <a onClick={this.onDrop} href="#">[Drop]</a></li>;
+    return <li>
+      {this.state.attributes.name + '-'}<a onClick={this.onDrop} href="#">[Drop]</a>
+      {'-'}<a onClick={this.onUse} href="#">[Use]</a>
+    </li>;
   },
 
   onDrop: function(event) {
     event.preventDefault();
     this.props.onDrop(this.props.id);
+  },
+
+  onUse: function(event) {
+    event.preventDefault;
+    if (this.state.attributes.subtype === 'weapon') {
+      this.props.onUse('wield', this.props.id);
+    } else if (this.state.attributes.subtype === 'armor') {
+      this.props.onUse('equip', this.props.id);
+    } else if (this.state.attributes.subtype === 'potion') {
+      this.props.onUse('quaff', this.props.id);
+    }
   }
 });
 

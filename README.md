@@ -8,10 +8,9 @@ Don't forget to make `session-key.js` from the example.
 
 ## Still to implement
 
-- [ ] show inventory
-- [ ] drop/quaff
-- [ ] wield/unwield
-- [ ] equip/unequip
+- [x] show inventory
+- [x] drop
+- [x] use
 - [ ] dig
 - [ ] repair inventory items
 - [ ] when a monster is killed, issue a notification and remove it from the map

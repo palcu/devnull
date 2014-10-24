@@ -26,19 +26,19 @@ module.exports = {
 
     Mousetrap.bind('i', function(e) {
       e.preventDefault();
-      $.get(getUrl('move', this.state.currentChar, 'downleft'), this._parseMoveResponse);
+      $.get(getUrl('move', this.state.currentChar, 'upleft'), this._parseMoveResponse);
     }.bind(this));
     Mousetrap.bind('o', function(e) {
       e.preventDefault();
-      $.get(getUrl('move', this.state.currentChar, 'downright'), this._parseMoveResponse);
+      $.get(getUrl('move', this.state.currentChar, 'downleft'), this._parseMoveResponse);
     }.bind(this));
     Mousetrap.bind('k', function(e) {
       e.preventDefault();
-      $.get(getUrl('move', this.state.currentChar, 'upleft'), this._parseMoveResponse);
+      $.get(getUrl('move', this.state.currentChar, 'upright'), this._parseMoveResponse);
     }.bind(this));
     Mousetrap.bind('l', function(e) {
       e.preventDefault();
-      $.get(getUrl('move', this.state.currentChar, 'upright'), this._parseMoveResponse);
+      $.get(getUrl('move', this.state.currentChar, 'downright'), this._parseMoveResponse);
     }.bind(this));
 
     Mousetrap.bind('g', function(e) {
