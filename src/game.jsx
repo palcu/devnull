@@ -48,7 +48,8 @@ var Game = React.createClass({
              cornerRightBottom={this.state.cornerRightBottom}
              entities={this.state.entities}
              locations={this.state.locations}
-             items={this.state.items} />
+             items={this.state.items}
+             mapName={this.state.currentMap} />
       </div>
     </div>;
   },

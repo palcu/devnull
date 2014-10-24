@@ -5,7 +5,7 @@ var React = require('react');
 var Character = React.createClass({
   render: function() {
     return <li onClick={this.onCharacterClick}>
-      <a href="#" onClick={this.onCharacterSelect}>{this.props.name}</a> - <a href="#" onClick={this.onCharacterDelete}>Delete</a>
+      <a href="#" onClick={this.onCharacterSelect}>{this.props.name}</a> - <a href="#" onClick={this.onCharacterDelete}>[x]</a>
     </li>;
   },
 

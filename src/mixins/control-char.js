@@ -25,6 +25,13 @@ module.exports = {
       e.preventDefault();
       $.get(getUrl('move', this.state.currentChar, 'down'), this._parseMoveResponse);
     }.bind(this));
+
+    Mousetrap.bind('g', function(e) {
+      e.preventDefault();
+      $.get(getUrl('get', this.state.currentChar), function(resp) {
+        console.log(resp);
+      })
+    }.bind(this));
   },
 
   _parseMoveResponse: function(response) {

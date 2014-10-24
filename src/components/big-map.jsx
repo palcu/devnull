@@ -37,7 +37,7 @@ var BigMap = React.createClass({
 
       return <div>
         <p>
-          Offset
+          {this.props.mapName} - offset
           ({this.props.cornerLeftTop.x},{this.props.cornerLeftTop.y}) and
           ({this.props.cornerRightBottom.x},{this.props.cornerRightBottom.y})
         </p>
