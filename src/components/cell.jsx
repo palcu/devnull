@@ -14,9 +14,13 @@ var Cell = React.createClass({
       'unwalkable': (elementInMap === '$')
     });
 
-    return <td className={classes}>
+    return <td className={classes} onClick={this.cellOnClick}>
       {elementInMap}
     </td>;
+  },
+
+  cellOnClick: function() {
+    console.log(this.props.number);
   },
 
   _getElementFor: function(number) {
@@ -25,7 +29,7 @@ var Cell = React.createClass({
     } else if (number === 0 || number === 16) {
       return '$';
     } else {
-      return number;
+      return '?';
     }
   }
 });

@@ -11,28 +11,28 @@ module.exports = {
   componentWillMount: function() {
     Mousetrap.bind('up', function(e) {
       e.preventDefault();
-      $.get(getUrl('move', this.state.currentChar, 'left'), function(response) {
-        console.log(response['success']);
-      });
+      $.get(getUrl('move', this.state.currentChar, 'left'), this._parseResponse);
     }.bind(this));
     Mousetrap.bind('down', function(e) {
       e.preventDefault();
-      $.get(getUrl('move', this.state.currentChar, 'right'), function(response) {
-        console.log(response['success']);
-      });
+      $.get(getUrl('move', this.state.currentChar, 'right'), this._parseResponse);
     }.bind(this));
     Mousetrap.bind('left', function(e) {
       e.preventDefault();
-      $.get(getUrl('move', this.state.currentChar, 'up'), function(response) {
-        console.log(response['success']);
-      });
+      $.get(getUrl('move', this.state.currentChar, 'up'), this._parseResponse);
     }.bind(this));
     Mousetrap.bind('right', function(e) {
       e.preventDefault();
-      $.get(getUrl('move', this.state.currentChar, 'down'), function(response) {
-        console.log(response['success']);
-      });
+      $.get(getUrl('move', this.state.currentChar, 'down'), this._parseResponse);
     }.bind(this));
+  },
 
+  _parseResponse: function(response) {
+    if ($.type(response.success) === 'object') {
+      var coords = response.success.movedto;
+      console.log('moved to (' + coords.x + ', ' + coords.y + ')');
+    } else {
+      console.log(response.success);
+    }
   }
 };

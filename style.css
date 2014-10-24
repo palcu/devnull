@@ -50,6 +50,18 @@ footer {
   overflow: hidden;
 }
 
+.unvisited {
+  background-color: gray;
+}
+
+.unwalkable {
+  background-color: black;
+}
+
+.character {
+  background-color: #AD24E3;
+}
+
 /* JSON */
 .json-markup {
   line-height: 17px;

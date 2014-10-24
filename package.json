@@ -13,6 +13,7 @@
     "flux": "^2.0.1",
     "json-markup": "^0.1.6",
     "lodash": "^2.4.1",
+    "log-with-style": "^0.1.5",
     "mousetrap": "0.0.1",
     "react": "^0.11.2",
     "react-bootstrap": "^0.12.0"
