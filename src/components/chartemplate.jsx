@@ -14,7 +14,7 @@ var CharTemplate = React.createClass({
     var rawMarkup = jsonMarkup(this.state.charTemplate);
     return <div>
       <p>Character template</p>
-      <span dangerouslySetInnerHTML={{__html: rawMarkup}} />;
+      <span dangerouslySetInnerHTML={{__html: rawMarkup}} />
     </div>;
   },
 

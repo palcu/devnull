@@ -16,7 +16,7 @@ var Level = React.createClass({
     var rawMarkup = jsonMarkup(this.state.level);
     return <div>
       <h1>Level</h1>
-      <span dangerouslySetInnerHTML={{__html: rawMarkup}} />;
+      <span dangerouslySetInnerHTML={{__html: rawMarkup}} />
     </div>;
   },
 
@@ -48,7 +48,10 @@ var Level = React.createClass({
   },
 
   _displayLevel: function(level, currentChar) {
-    delete level.area;
+    ['area', 'map', 'bx', 'by', 'stairsup', 'stairsdown', 'forges',
+     'healingpools', 'manapools', 'x', 'y', 'updates'].forEach(function(key) {
+      delete level[key];
+    })
     _.remove(level.entities, function(entity) {
       return entity._id === currentChar;
     });

@@ -187,7 +187,7 @@ var Game = React.createClass({
       nextCornerRightBottom = localStorage.getLocalStorageKey(level.map, 'cornerRightBottom');
     }
 
-    localStorage.getLocalStorageKey(level.map, {
+    localStorage.setLocalStorageKeys(level.map, {
       cornerLeftTop: nextCornerLeftTop,
       cornerRightBottom: nextCornerRightBottom,
       bigMap: nextMap

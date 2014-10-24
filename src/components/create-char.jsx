@@ -7,11 +7,11 @@ var React = require('react'),
 var CreateCharacter = React.createClass({
   getInitialState: function() {
     return {
-      name: "alex",
-      str: 10,
+      name: "palcu",
+      str: 14,
       con: 10,
       dex: 10,
-      int: 10,
+      int: 14,
       wis: 10
     };
   },
@@ -80,7 +80,7 @@ var CreateCharacter = React.createClass({
     var args = this._getSerialisation();
     $.get(getUrl('createcharacter', args), function(response) {
       console.log(response);
-    }.bind(this));
+    });
   },
 
   _getSerialisation: function() {

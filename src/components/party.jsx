@@ -44,7 +44,7 @@ var Party = React.createClass({
   },
 
   _getParty: function() {
-    $.get(getUrl('getparty'), function(response){
+    $.get(getUrl('getparty'), function(response ){
       this.setState({party: response.characters});
     }.bind(this));
   }

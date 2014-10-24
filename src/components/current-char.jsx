@@ -4,18 +4,23 @@ var React = require('react'),
     $ = require('jquery'),
     getUrl = require('../lib/get-url.js'),
     jsonMarkup = require('json-markup'),
-    Constants = require('../constants.js');
+    Constants = require('../constants.js'),
+    Inventory = require('./inventory.jsx');
 
 var CurrentChar = React.createClass({
   getInitialState: function() {
-    return {currentChar: {}};
+    return {
+      currentChar: {},
+      inventory: []
+    };
   },
 
   render: function() {
     var rawMarkup = jsonMarkup(this.state.currentChar);
     return <div>
       <h1>Current Character</h1>
-      <span dangerouslySetInnerHTML={{__html: rawMarkup}} />;
+      <span dangerouslySetInnerHTML={{__html: rawMarkup}} />
+      <Inventory items={this.state.inventory} />
     </div>;
   },
 
@@ -31,7 +36,10 @@ var CurrentChar = React.createClass({
     if (this.props.currentChar) {
       $.get(getUrl('getcharacter', this.props.currentChar), function(response){
         delete response.mid;
-        this.setState({currentChar: response});
+        this.setState({
+          currentChar: response,
+          inventory: response.inventory
+        });
       }.bind(this));
     }
   }

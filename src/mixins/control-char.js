@@ -1,5 +1,3 @@
-/** @jsx React.DOM */
-
 var Mousetrap = require('mousetrap'),
     getUrl = require('../lib/get-url.js'),
     $ = require('jquery');
@@ -29,6 +27,18 @@ module.exports = {
     Mousetrap.bind('g', function(e) {
       e.preventDefault();
       $.get(getUrl('get', this.state.currentChar), function(resp) {
+        console.log(resp);
+      })
+    }.bind(this));
+    Mousetrap.bind('u', function(e) {
+      e.preventDefault();
+      $.get(getUrl('levelup', this.state.currentChar), function(resp) {
+        console.log(resp);
+      })
+    }.bind(this));
+    Mousetrap.bind('d', function(e) {
+      e.preventDefault();
+      $.get(getUrl('leveldown', this.state.currentChar), function(resp) {
         console.log(resp);
       })
     }.bind(this));
