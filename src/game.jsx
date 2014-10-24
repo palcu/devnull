@@ -32,7 +32,8 @@ var Game = React.createClass({
       cornerRightBottom: null,
       bigMap: m,
       currentX: null,
-      currentY: null
+      currentY: null,
+      firstStart: true
     };
   },
 
@@ -62,8 +63,12 @@ var Game = React.createClass({
   },
 
   onReceiveLevel: function(level) {
+    if (this._isMapSaved(level.map) && this.state.firstStart) {
+      var nextMap = this._getLocalStorageKey(level.map, 'bigMap');
+    } else {
+      var nextMap = _.clone(this.state.bigMap);
+    }
 
-    var nextMap = _.clone(this.state.bigMap);
     var receivedMap = level.area;
 
     for (var i=0; i<receivedMap[0].length; i++) {
@@ -74,14 +79,14 @@ var Game = React.createClass({
 
     var nextCornerLeftTop = {},
         nextCornerRightBottom = {};
-    if (this.state.cornerLeftTop) {
+    if (!this.state.firstStart) {
       nextCornerLeftTop.x = Math.min(this.state.cornerLeftTop.x, level.bx);
       nextCornerLeftTop.y = Math.min(this.state.cornerLeftTop.y, level.by);
       nextCornerRightBottom.x = Math.max(this.state.cornerRightBottom.x,
                                     level.bx + receivedMap.length - 1);
       nextCornerRightBottom.y = Math.max(this.state.cornerRightBottom.y,
                                     level.by + receivedMap[0].length - 1);
-    } else {
+    } else if (this.state.firstStart && !this._isMapSaved(level.map)) {
       nextCornerLeftTop = {
         x: level.bx,
         y: level.by
@@ -90,21 +95,43 @@ var Game = React.createClass({
         x: level.bx + receivedMap.length - 1,
         y: level.by + receivedMap[0].length - 1
       };
+    } else {
+      nextCornerLeftTop = this._getLocalStorageKey(level.map, 'cornerLeftTop');
+      nextCornerRightBottom = this._getLocalStorageKey(level.map, 'cornerRightBottom');
     }
-    // console.table(nextMap)
+
+    this._setLocalStorageKeys(level.map, {
+      cornerLeftTop: nextCornerLeftTop,
+      cornerRightBottom: nextCornerRightBottom,
+      bigMap: nextMap
+    });
 
     this.setState({
       bigMap: nextMap,
       currentX: level.x,
       currentY: level.y,
       cornerLeftTop: nextCornerLeftTop,
-      cornerRightBottom: nextCornerRightBottom
-      // bigMap: level.area
-      // cornerLeftTop: {x: 0, y: 0},
-      // cornerRightBottom: {x:15, y: 15},
-      // currentX: 2,
-      // currentY: 2
+      cornerRightBottom: nextCornerRightBottom,
+      firstStart: false
     });
+  },
+
+  _isMapSaved: function(bigMap) {
+    /**
+     * Map should be already saved.
+     */
+    return this._getLocalStorageKey(bigMap, 'bigMap') !== null;
+  },
+
+  _getLocalStorageKey: function(bigMap, key) {
+    return JSON.parse(window.localStorage.getItem(bigMap + ':' + key));
+  },
+
+  _setLocalStorageKeys: function(bigMap, dict) {
+    for (var key in dict) {
+      window.localStorage.setItem(bigMap + ':' + key,
+                                  JSON.stringify(dict[key]));
+    }
   }
 });
 

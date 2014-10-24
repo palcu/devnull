@@ -2,13 +2,11 @@
 
 var React = require('react'),
     $ = require('jquery'),
-    cx = require('react/addons').addons.classSet,;
+    cx = require('react/addons').addons.classSet;
 
 
 var Cell = React.createClass({
   render: function() {
-    var tooltip = <Tooltip>this.props.number</Tooltip>
-
     var elementInMap = this._getElementFor(this.props.number);
     var classes = cx({
       'character': this.props.isCharacter,
@@ -17,9 +15,7 @@ var Cell = React.createClass({
     });
 
     return <td className={classes}>
-      <OverlayTrigger overlay={tooltip}>
-        <span>{elementInMap}</span>
-      </OverlayTrigger>
+      {elementInMap}
     </td>;
   },
 
