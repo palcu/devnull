@@ -20,16 +20,19 @@ var CurrentChar = React.createClass({
     return <div>
       <h1>Current Character</h1>
       <span dangerouslySetInnerHTML={{__html: rawMarkup}} />
-      <Inventory items={this.state.inventory} />
+      <Inventory items={this.state.inventory}
+                 onDrop={this.onDrop} />
     </div>;
-  },
-
-  componentWillReceiveProps: function() {
-    this._getChar();
   },
 
   componentDidMount: function() {
     setInterval(this._getChar, Constants.CURRENT_CHAR_INTERVAL);
+  },
+
+  onDrop: function(id) {
+    $.get(getUrl('drop', id, this.state.currentChar.id), function(response) {
+      console.log(response);
+    });
   },
 
   _getChar: function() {

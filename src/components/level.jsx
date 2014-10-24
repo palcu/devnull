@@ -24,10 +24,6 @@ var Level = React.createClass({
     setInterval(this._getLevel, Constants.SCAN_INTERVAL);
   },
 
-  componentWillMount: function() {
-    // this._getLevel();
-  },
-
   _getLevel: function(currentChar) {
     currentChar = currentChar || this.props.currentChar;
     if (currentChar) {

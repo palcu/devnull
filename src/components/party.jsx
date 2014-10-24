@@ -29,10 +29,6 @@ var Party = React.createClass({
     setInterval(this._getParty, Constants.PARTY_INTERVAL);
   },
 
-  componentWillReceiveProps: function() {
-    this._getParty();
-  },
-
   onCharacterSelect: function(character) {
     this.props.onCallback(character);
   },

@@ -1,11 +1,21 @@
 /** @jsx React.DOM */
 
 var React = require('react'),
-    getUrl = require('../lib/get-url.js');
+    InventoryItem = require('./inventory-item.jsx');
 
 var Inventory = React.createClass({
   render: function() {
-    return <h1>Inventory</h1>;
+    var items = [];
+    this.props.items.forEach(function(item) {
+      items.push(<InventoryItem key={item} id={item} onDrop={this.props.onDrop} />);
+    }.bind(this))
+
+    return <div>
+      <h1>Inventory</h1>
+      <ul>
+        {items}
+      </ul>
+    </div>;
   }
 });
 
