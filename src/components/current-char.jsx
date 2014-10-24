@@ -22,7 +22,9 @@ var CurrentChar = React.createClass({
       <span dangerouslySetInnerHTML={{__html: rawMarkup}} />
       <Inventory items={this.state.inventory}
                  onDrop={this.onDrop}
-                 onUse={this.onUse} />
+                 onUse={this.onUse}
+                 onUnwieldArmor={this.onUnwieldArmor}
+                 onUnwieldWeapon={this.onUnwieldWeapon} />
     </div>;
   },
 
@@ -42,6 +44,22 @@ var CurrentChar = React.createClass({
     });
   },
 
+  onUnwieldArmor: function(event) {
+    event.preventDefault();
+    $.get(getUrl('unequip', this.state.currentArmor, this.state.currentChar.id),
+          function(response) {
+            console.log(response);
+          })
+  },
+
+  onUnwieldWeapon: function(event) {
+    event.preventDefault();
+    $.get(getUrl('unwield', this.state.currentWeapon, this.state.currentChar.id),
+          function(response) {
+            console.log(response);
+          })
+  },
+
   _getChar: function() {
     if (this.props.currentChar) {
       $.get(getUrl('getcharacter', this.props.currentChar), function(response){
@@ -54,6 +72,8 @@ var CurrentChar = React.createClass({
          toDisplay['armor'] = response['equippedarmorname']
 
         this.setState({
+          currentWeapon: response.wieldedweapon,
+          currentArmor: response.equippedarmor,
           currentChar: toDisplay,
           inventory: response.inventory
         });

@@ -15,6 +15,8 @@ var Inventory = React.createClass({
 
     return <div>
       <h1>Inventory</h1>
+      <p><a href="#" onClick={this.props.onUnwieldArmor}>Unwield Armor</a></p>
+      <p><a href="#" onClick={this.props.onUnwieldWeapon}>Unwield Weapon</a></p>
       <ul>
         {items}
       </ul>
