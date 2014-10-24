@@ -18,6 +18,7 @@ var BigMap = React.createClass({
         var items = [];
         for (var j=this.props.cornerLeftTop.y; j<=this.props.cornerRightBottom.y; j++) {
           var entity = _.find(entitiesCollection, {x: i, y: j});
+          var location = _.find(this.props.locations, {x: i, y: j});
           var key = i + '-' + j;
 
           var isMyCharacter = (i === this.props.currentX &&
@@ -25,7 +26,8 @@ var BigMap = React.createClass({
           items.push(<Cell isMyCharacter={isMyCharacter}
                            number={this.props.area[i][j]}
                            key={key}
-                           entity={entity} />);
+                           entity={entity}
+                           location={location} />);
         }
         rows.push(<tr key={i}>{items}</tr>);
       }

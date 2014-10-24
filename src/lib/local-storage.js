@@ -1,9 +1,9 @@
 module.exports = {
-  isMapSaved: function(bigMap) {
+  isKeySaved: function(map, key) {
     /**
      * Map should be already saved.
      */
-    return this.getLocalStorageKey(bigMap, 'bigMap') !== null;
+    return this.getLocalStorageKey(map, key) !== null;
   },
 
   getLocalStorageKey: function(bigMap, key) {

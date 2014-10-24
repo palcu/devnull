@@ -15,7 +15,8 @@ var Cell = React.createClass({
       'my-character': this.props.isMyCharacter,
       'unvisited': (elementInMap === '#'),
       'unwalkable': (elementInMap === '$'),
-      'entity-monster': this.props.entity.type === 'monster'
+      'entity-monster': this.props.entity.type === 'monster',
+      'location': this.props.location
     });
 
     return <td className={classes} onClick={this.cellOnClick}>
@@ -28,6 +29,9 @@ var Cell = React.createClass({
     if (this.props.entity) {
       console.log(this.props.entity);
     }
+    if (this.props.location) {
+      console.log(this.props.location);
+    }
   },
 
   _getElement: function() {
@@ -39,6 +43,16 @@ var Cell = React.createClass({
     }
     if (this.props.number === 0 || this.props.number === 16) {
       return '$';
+    }
+    if (this.props.location) {
+      var mapping = {
+        'manapool': 'M',
+        'forge': 'F',
+        'healingpool': 'H',
+        'stairsdown': 'D',
+        'stairsup': 'U'
+      }
+      return mapping[this.props.location.name];
     }
     return ' ';
   }

@@ -13,22 +13,15 @@ var React = require('react'),
 
 var Game = React.createClass({
   getInitialState: function() {
-    var m = [];
-    for (var i=0; i<100; i++) {
-      m.push([]);
-      for (var j=0; j<100; j++) {
-        m[i].push(-1);
-      }
-    }
-
     return {
       maxX: 50,
       maxY: 50,
       entities: {},
+      locations: [],
       cornerLeftTop: null,
       cornerRightBottom: null,
       currentMap: null,
-      bigMap: m,
+      bigMap: this._getEmptyMatrix(),
       currentX: null,
       currentY: null,
       firstStart: true
@@ -52,7 +45,8 @@ var Game = React.createClass({
              currentY={this.state.currentY}
              cornerLeftTop={this.state.cornerLeftTop}
              cornerRightBottom={this.state.cornerRightBottom}
-             entities={this.state.entities} />
+             entities={this.state.entities}
+             locations={this.state.locations} />
       </div>
     </div>;
   },
@@ -60,14 +54,51 @@ var Game = React.createClass({
   onReceiveLevel: function(level) {
     this._parseMap(level);
     this._parseEntities(level);
+    this._parseLocations(level);
+  },
+
+  _parseLocations: function(level) {
+    var nextLocations = [];
+    nextLocations.push({
+      name: 'stairsup',
+      x: level.stairsup.x,
+      y: level.stairsup.y
+    });
+    nextLocations.push({
+      name: 'stairsdown',
+      x: level.stairsdown.x,
+      y: level.stairsdown.y
+    });
+    level.forges.forEach(function(forge) {
+      nextLocations.push({
+        name: 'forge',
+        x: forge.x,
+        y: forge.y
+      });
+    });
+    level.healingpools.forEach(function(healingpool) {
+      nextLocations.push({
+        name: 'healingpool',
+        x: healingpool.x,
+        y: healingpool.y
+      });
+    });
+    level.manapools.forEach(function(manapool) {
+      nextLocations.push({
+        name: 'manapool',
+        x: manapool.x,
+        y: manapool.y
+      });
+    });
+    this.setState({locations: nextLocations});
   },
 
   _parseEntities: function(level) {
     var receivedEntities = level.entities;
     var nextEntities = {};
-    if (localStorage.isMapSaved(level.map) && this.state.firstStart) {
+    if (localStorage.isKeySaved(level.map, 'entities') && this.state.firstStart) {
       nextEntities = localStorage.getLocalStorageKey(level.map, 'entities');
-    } else {
+    } else if (this.state.currentMap === level.map) {
       nextEntities = _.clone(this.state.entities);
     }
     receivedEntities.forEach(function(entity) {
@@ -76,7 +107,8 @@ var Game = React.createClass({
     });
 
     nextEntities = this._removeDeadEntities(nextEntities);
-    localStorage.getLocalStorageKey(level.map, {entities: nextEntities});
+
+    localStorage.setLocalStorageKeys(level.map, {entities: nextEntities});
     this.setState({entities: nextEntities});
   },
 
@@ -92,10 +124,12 @@ var Game = React.createClass({
 
   _parseMap: function(level) {
     var nextMap;
-    if (localStorage.isMapSaved(level.map) && this.state.firstStart) {
+    if (localStorage.isKeySaved(level.map, 'bigMap') && this.state.firstStart) {
       nextMap = localStorage.getLocalStorageKey(level.map, 'bigMap');
-    } else {
+    } else if (this.state.currentMap === level.map) {
       nextMap = _.clone(this.state.bigMap);
+    } else {
+      nextMap = this._getEmptyMatrix();
     }
 
     var receivedMap = level.area;
@@ -115,7 +149,7 @@ var Game = React.createClass({
                                     level.bx + receivedMap.length - 1);
       nextCornerRightBottom.y = Math.max(this.state.cornerRightBottom.y,
                                     level.by + receivedMap[0].length - 1);
-    } else if (this.state.firstStart && !localStorage.isMapSaved(level.map)) {
+    } else if (this.state.firstStart && !localStorage.isKeySaved(level.map, 'bigMap')) {
       nextCornerLeftTop = {
         x: level.bx,
         y: level.by
@@ -144,6 +178,17 @@ var Game = React.createClass({
       cornerRightBottom: nextCornerRightBottom,
       firstStart: false
     });
+  },
+
+  _getEmptyMatrix: function() {
+    var m = [];
+    for (var i=0; i<100; i++) {
+      m.push([]);
+      for (var j=0; j<100; j++) {
+        m[i].push(-1);
+      }
+    }
+    return m;
   }
 });
 
