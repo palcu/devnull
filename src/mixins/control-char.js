@@ -11,23 +11,23 @@ module.exports = {
   componentWillMount: function() {
     Mousetrap.bind('up', function(e) {
       e.preventDefault();
-      $.get(getUrl('move', this.state.currentChar, 'left'), this._parseResponse);
+      $.get(getUrl('move', this.state.currentChar, 'left'), this._parseMoveResponse);
     }.bind(this));
     Mousetrap.bind('down', function(e) {
       e.preventDefault();
-      $.get(getUrl('move', this.state.currentChar, 'right'), this._parseResponse);
+      $.get(getUrl('move', this.state.currentChar, 'right'), this._parseMoveResponse);
     }.bind(this));
     Mousetrap.bind('left', function(e) {
       e.preventDefault();
-      $.get(getUrl('move', this.state.currentChar, 'up'), this._parseResponse);
+      $.get(getUrl('move', this.state.currentChar, 'up'), this._parseMoveResponse);
     }.bind(this));
     Mousetrap.bind('right', function(e) {
       e.preventDefault();
-      $.get(getUrl('move', this.state.currentChar, 'down'), this._parseResponse);
+      $.get(getUrl('move', this.state.currentChar, 'down'), this._parseMoveResponse);
     }.bind(this));
   },
 
-  _parseResponse: function(response) {
+  _parseMoveResponse: function(response) {
     if ($.type(response.success) === 'object' && 'movedto' in response.success) {
       var coords = response.success.movedto;
       console.log('moved to (' + coords.x + ', ' + coords.y + ')');
