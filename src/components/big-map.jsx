@@ -1,7 +1,8 @@
 /** @jsx React.DOM */
 
 var React = require('react'),
-    Cell = require('./cell.jsx');
+    Cell = require('./cell.jsx'),
+    _ = require('lodash');
 
 var BigMap = React.createClass({
   getDefaultProps: function() {
@@ -11,18 +12,20 @@ var BigMap = React.createClass({
   render: function() {
     if (this.props.cornerLeftTop) {
       var rows = [];
+      var entitiesCollection = this._getEntitiesCollection();
 
       for (var i=this.props.cornerLeftTop.x; i<=this.props.cornerRightBottom.x; i++) {
         var items = [];
         for (var j=this.props.cornerLeftTop.y; j<=this.props.cornerRightBottom.y; j++) {
-          var isCharacter = (i === this.props.currentX &&
-                             j === this.props.currentY);
+          var entity = _.find(entitiesCollection, {x: i, y: j});
           var key = i + '-' + j;
 
-          // items.push(<td className={classes} key={key}>{elementInMap}</td>);
-          items.push(<Cell isCharacter={isCharacter}
+          var isMyCharacter = (i === this.props.currentX &&
+                               j === this.props.currentY);
+          items.push(<Cell isMyCharacter={isMyCharacter}
                            number={this.props.area[i][j]}
-                           key={key} />);
+                           key={key}
+                           entity={entity} />);
         }
         rows.push(<tr key={i}>{items}</tr>);
       }
@@ -37,6 +40,14 @@ var BigMap = React.createClass({
       </div>;
     }
     return <div>"Waiting for character..."</div>;
+  },
+
+  _getEntitiesCollection: function() {
+    v = []
+    for (var entity in this.props.entities) {
+      v.push(this.props.entities[entity]);
+    }
+    return v;
   }
 });
 

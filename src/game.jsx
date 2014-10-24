@@ -10,7 +10,8 @@ var React = require('react'),
     ControlCharMixin = require('./mixins/control-char.js'),
     BigMap = require('./components/big-map.jsx'),
     _ = require('lodash'),
-    $ = require('jquery');
+    $ = require('jquery'),
+    Constants = require('./constants.js');
 
 var Game = React.createClass({
   mixins: [ControlCharMixin],
@@ -28,6 +29,7 @@ var Game = React.createClass({
       currentChar: "",
       maxX: 50,
       maxY: 50,
+      entities: {},
       cornerLeftTop: null,
       cornerRightBottom: null,
       bigMap: m,
@@ -53,7 +55,8 @@ var Game = React.createClass({
              currentX={this.state.currentX}
              currentY={this.state.currentY}
              cornerLeftTop={this.state.cornerLeftTop}
-             cornerRightBottom={this.state.cornerRightBottom} />
+             cornerRightBottom={this.state.cornerRightBottom}
+             entities={this.state.entities} />
       </div>
     </div>;
   },
@@ -63,10 +66,44 @@ var Game = React.createClass({
   },
 
   onReceiveLevel: function(level) {
+    this._parseMap(level);
+    this._parseEntities(level);
+  },
+
+  _parseEntities: function(level) {
+    var receivedEntities = level.entities;
+    var nextEntities = {};
     if (this._isMapSaved(level.map) && this.state.firstStart) {
-      var nextMap = this._getLocalStorageKey(level.map, 'bigMap');
+      nextEntities = this._getLocalStorageKey(level.map, 'entities');
     } else {
-      var nextMap = _.clone(this.state.bigMap);
+      nextEntities = _.clone(this.state.entities);
+    }
+    receivedEntities.forEach(function(entity) {
+      nextEntities[entity._id] = entity;
+      nextEntities[entity._id].last_updated = Date.now();
+    });
+
+    nextEntities = this._removeDeadEntities(nextEntities);
+    this._setLocalStorageKeys(level.map, {entities: nextEntities});
+    this.setState({entities: nextEntities});
+  },
+
+  _removeDeadEntities: function(entities) {
+    for (var entity in entities) {
+      if (Date.now() - entities[entity].last_updated >
+            Constants.ENTITY_IS_REMOVED_INTERVAL) {
+        delete entities[entity]
+      }
+    }
+    return entities;
+  },
+
+  _parseMap: function(level) {
+    var nextMap;
+    if (this._isMapSaved(level.map) && this.state.firstStart) {
+      nextMap = this._getLocalStorageKey(level.map, 'bigMap');
+    } else {
+      nextMap = _.clone(this.state.bigMap);
     }
 
     var receivedMap = level.area;

@@ -58,8 +58,12 @@ footer {
   background-color: black;
 }
 
-.character {
+.my-character {
   background-color: #AD24E3;
+}
+
+.entity-monster {
+  background-color: red;
 }
 
 /* JSON */

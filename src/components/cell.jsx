@@ -6,12 +6,17 @@ var React = require('react'),
 
 
 var Cell = React.createClass({
+  getDefaultProps: function() {
+    return {entity: {}};
+  },
+
   render: function() {
-    var elementInMap = this._getElementFor(this.props.number);
+    var elementInMap = this._getElement();
     var classes = cx({
-      'character': this.props.isCharacter,
+      'my-character': this.props.isMyCharacter,
       'unvisited': (elementInMap === '#'),
-      'unwalkable': (elementInMap === '$')
+      'unwalkable': (elementInMap === '$'),
+      'entity-monster': this.props.entity.type === 'monster'
     });
 
     return <td className={classes} onClick={this.cellOnClick}>
@@ -21,16 +26,22 @@ var Cell = React.createClass({
 
   cellOnClick: function() {
     console.log(this.props.number);
+    if (this.props.entity) {
+      console.log(this.props.entity);
+    }
   },
 
-  _getElementFor: function(number) {
-    if (number < 0) {
-      return '#';
-    } else if (number === 0 || number === 16) {
-      return '$';
-    } else {
-      return '?';
+  _getElement: function() {
+    if (this.props.entity._id) {
+      return '@';
     }
+    if (this.props.number < 0) {
+      return '#';
+    }
+    if (this.props.number === 0 || this.props.number === 16) {
+      return '$';
+    }
+    return '?';
   }
 });
 
