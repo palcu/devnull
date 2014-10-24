@@ -45,9 +45,16 @@ var CurrentChar = React.createClass({
   _getChar: function() {
     if (this.props.currentChar) {
       $.get(getUrl('getcharacter', this.props.currentChar), function(response){
-        delete response.mid;
+        var toDisplay = {};
+        ['id', 'exp', 'level', 'str', 'int', 'wis', 'dex', 'con', 'x', 'y',
+         'hp', 'ac', 'alloc', 'speed'].forEach(function(key) {
+          toDisplay[key] = response[key]
+         });
+         toDisplay['weapon'] = response['wieldedweaponname']
+         toDisplay['armor'] = response['equippedarmorname']
+
         this.setState({
-          currentChar: response,
+          currentChar: toDisplay,
           inventory: response.inventory
         });
       }.bind(this));
