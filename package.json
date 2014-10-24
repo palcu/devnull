@@ -14,7 +14,8 @@
     "json-markup": "^0.1.6",
     "lodash": "^2.4.1",
     "mousetrap": "0.0.1",
-    "react": "^0.11.2"
+    "react": "^0.11.2",
+    "react-bootstrap": "^0.12.0"
   },
   "browserify": {
     "transform": [

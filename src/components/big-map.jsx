@@ -1,7 +1,7 @@
 /** @jsx React.DOM */
 
 var React = require('react'),
-    cx = require('react/addons').addons.classSet;
+    Cell = require('./cell.jsx');
 
 var BigMap = React.createClass({
   getDefaultProps: function() {
@@ -17,11 +17,12 @@ var BigMap = React.createClass({
         for (var j=this.props.cornerLeftTop.y; j<=this.props.cornerRightBottom.y; j++) {
           var isCharacter = (i === this.props.currentX &&
                              j === this.props.currentY);
-          var classes = cx({
-            'character': isCharacter
-          });
           var key = i + '-' + j;
-          items.push(<td className={classes} key={key}>{this.props.area[i][j]}</td>);
+
+          // items.push(<td className={classes} key={key}>{elementInMap}</td>);
+          items.push(<Cell isCharacter={isCharacter}
+                           number={this.props.area[i][j]}
+                           key={key} />);
         }
         rows.push(<tr key={i}>{items}</tr>);
       }
@@ -32,7 +33,7 @@ var BigMap = React.createClass({
           ({this.props.cornerLeftTop.x},{this.props.cornerLeftTop.y}) and
           ({this.props.cornerRightBottom.x},{this.props.cornerRightBottom.y})
         </p>
-        <table>{rows}</table>
+        <table className="big-map"><tbody>{rows}</tbody></table>
       </div>;
     }
     return <div>"Waiting for character..."</div>;

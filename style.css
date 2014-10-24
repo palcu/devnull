@@ -6,6 +6,8 @@ h1 {
   font-size: 110%;
 }
 
+/* Layout */
+
 .flex-container {
   display: flex;
 }
@@ -15,8 +17,10 @@ h1 {
 }
 
 .flex-map {
-  flex: 4;
+  flex: 3;
 }
+
+/* Elements */
 
 .character {
   font-weight: bold;
@@ -33,6 +37,17 @@ label {
 footer {
   text-align: center;
   font-size: 50%;
+}
+
+.big-map {
+  border-collapse: collapse;
+  border: 1px solid black;
+  table-layout: fixed;
+}
+
+.big-map td {
+  border: 1px solid black;
+  overflow: hidden;
 }
 
 /* JSON */
