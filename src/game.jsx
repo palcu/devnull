@@ -148,7 +148,9 @@ var Game = React.createClass({
 
   _parseMap: function(level) {
     var nextMap;
-    if (localStorage.isKeySaved(level.map, 'bigMap') && this.state.firstStart) {
+    var nextCornerLeftTop = {},
+        nextCornerRightBottom = {};
+    if (localStorage.isKeySaved(level.map, 'bigMap') && this.state.currentMap != level.map) {
       nextMap = localStorage.getLocalStorageKey(level.map, 'bigMap');
     } else if (this.state.currentMap === level.map) {
       nextMap = _.clone(this.state.bigMap);
@@ -164,16 +166,15 @@ var Game = React.createClass({
       }
     }
 
-    var nextCornerLeftTop = {},
-        nextCornerRightBottom = {};
-    if (!this.state.firstStart) {
+    if (this.state.currentMap === level.map) {
       nextCornerLeftTop.x = Math.min(this.state.cornerLeftTop.x, level.bx);
       nextCornerLeftTop.y = Math.min(this.state.cornerLeftTop.y, level.by);
       nextCornerRightBottom.x = Math.max(this.state.cornerRightBottom.x,
                                     level.bx + receivedMap.length - 1);
       nextCornerRightBottom.y = Math.max(this.state.cornerRightBottom.y,
                                     level.by + receivedMap[0].length - 1);
-    } else if (this.state.firstStart && !localStorage.isKeySaved(level.map, 'bigMap')) {
+    } else if (!localStorage.isKeySaved(level.map, 'bigMap') &&
+               this.state.currentMap !== level.map) {
       nextCornerLeftTop = {
         x: level.bx,
         y: level.by
