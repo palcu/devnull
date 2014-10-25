@@ -128,10 +128,10 @@ var Game = React.createClass({
     receivedItems.forEach(function(item) {
       nextItems[item._id] = item;
       nextItems[item._id].last_updated = Date.now();
-    })
+    });
 
     nextItems = this._removeOldStuff(nextItems,
-                                     Constants.ITEM_IS_REMOVED_INTERVAL)
+                                     Constants.ITEM_IS_REMOVED_INTERVAL);
 
     localStorage.setLocalStorageKeys(level.map, {items: nextItems});
     this.setState({items: nextItems});

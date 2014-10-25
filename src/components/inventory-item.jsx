@@ -1,4 +1,5 @@
 /** @jsx React.DOM */
+/* global window */
 
 var React = require('react'),
     getUrl = require('../lib/get-url.js'),
@@ -17,7 +18,7 @@ var InventoryItem = React.createClass({
         this.setState({attributes: response});
         window.localStorage.setItem('inventory' + ':' + this.props.id,
                                     JSON.stringify(response));
-      }.bind(this))
+      }.bind(this));
     }
   },
 
@@ -29,7 +30,7 @@ var InventoryItem = React.createClass({
     if (this.canBeRepaired()){
       repairButton = <span>-<a onClick={this.onRepair} href="#">[Repair]</a></span>;
     }
-    var name = (<span onClick={this.displayItem}>{this.state.attributes.name}<br /></span>)
+    var name = (<span onClick={this.displayItem}>{this.state.attributes.name}<br /></span>);
     return <li>
       {name}<a onClick={this.onDrop} href="#">[Drop]</a>
       {'-'}<a onClick={this.onUse} href="#">[Use]</a>{repairButton}
@@ -51,7 +52,7 @@ var InventoryItem = React.createClass({
   },
 
   onUse: function(event) {
-    event.preventDefault;
+    event.preventDefault();
     if (this.state.attributes.subtype === 'weapon') {
       this.props.onUse('wield', this.props.id);
     } else if (this.state.attributes.subtype === 'armor') {

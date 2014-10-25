@@ -36,11 +36,11 @@ window.getHighScores = function() {
   $.get(getUrl('gethighscores'), function(response) {
     var top = [];
     response.success.forEach(function(score) {
-      top.push({name: score.name, score: score.score})
-    })
+      top.push({name: score.name, score: score.score});
+    });
     console.table(top);
-  })
-}
+  });
+};
 
 React.renderComponent(
   <AllThatIs />,

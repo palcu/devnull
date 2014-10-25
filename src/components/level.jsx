@@ -47,7 +47,7 @@ var Level = React.createClass({
     ['area', 'map', 'bx', 'by', 'stairsup', 'stairsdown', 'forges',
      'healingpools', 'manapools', 'x', 'y', 'updates'].forEach(function(key) {
       delete level[key];
-    })
+    });
     _.remove(level.entities, function(entity) {
       return entity._id === currentChar;
     });

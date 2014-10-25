@@ -12,7 +12,7 @@ var Inventory = React.createClass({
                                 onDrop={this.props.onDrop}
                                 onUse={this.props.onUse}
                                 onRepair={this.props.onRepair} />);
-    }.bind(this))
+    }.bind(this));
 
     return <div>
       <h1>Inventory ({this.props.items.length}/10)</h1>

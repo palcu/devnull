@@ -55,7 +55,7 @@ var Cell = React.createClass({
         'healingpool': 'H',
         'stairsdown': 'D',
         'stairsup': 'U'
-      }
+      };
       return mapping[this.props.location.name];
     }
     if (this.props.item) {
