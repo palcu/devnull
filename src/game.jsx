@@ -14,8 +14,8 @@ var React = require('react'),
 var Game = React.createClass({
   getInitialState: function() {
     return {
-      maxX: 50,
-      maxY: 50,
+      maxX: 120,
+      maxY: 120,
       entities: {},
       items: {},
       locations: [],
