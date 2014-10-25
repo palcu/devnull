@@ -77,6 +77,13 @@ module.exports = {
         console.log(resp);
       })
     }.bind(this));
+
+    Mousetrap.bind('p', function(e) {
+      e.preventDefault();
+      $.get(getUrl('planeshift', this.state.currentChar, 'sorting_puzzle_dimension'), function(resp) {
+        console.log(resp);
+      })
+    }.bind(this));
   },
 
   _parseMoveResponse: function(response) {

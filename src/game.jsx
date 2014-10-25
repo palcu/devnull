@@ -63,37 +63,47 @@ var Game = React.createClass({
 
   _parseLocations: function(level) {
     var nextLocations = [];
-    nextLocations.push({
-      name: 'stairsup',
-      x: level.stairsup.x,
-      y: level.stairsup.y
-    });
-    nextLocations.push({
-      name: 'stairsdown',
-      x: level.stairsdown.x,
-      y: level.stairsdown.y
-    });
-    level.forges.forEach(function(forge) {
+    if (level.stairsup) {
       nextLocations.push({
-        name: 'forge',
-        x: forge.x,
-        y: forge.y
+        name: 'stairsup',
+        x: level.stairsup.x,
+        y: level.stairsup.y
       });
-    });
-    level.healingpools.forEach(function(healingpool) {
+    }
+    if (level.stairsdown) {
       nextLocations.push({
-        name: 'healingpool',
-        x: healingpool.x,
-        y: healingpool.y
+        name: 'stairsdown',
+        x: level.stairsdown.x,
+        y: level.stairsdown.y
       });
-    });
+    }
+    if (level.forges) {
+      level.forges.forEach(function(forge) {
+        nextLocations.push({
+          name: 'forge',
+          x: forge.x,
+          y: forge.y
+        });
+      });
+    }
+    if (level.healingpools) {
+      level.healingpools.forEach(function(healingpool) {
+        nextLocations.push({
+          name: 'healingpool',
+          x: healingpool.x,
+          y: healingpool.y
+        });
+      });
+    }
+    if (level.manapools) {
     level.manapools.forEach(function(manapool) {
-      nextLocations.push({
-        name: 'manapool',
-        x: manapool.x,
-        y: manapool.y
+        nextLocations.push({
+          name: 'manapool',
+          x: manapool.x,
+          y: manapool.y
+        });
       });
-    });
+    }
     this.setState({locations: nextLocations});
   },
 
