@@ -92,6 +92,10 @@ footer {
   padding: 0;
 }
 
+.target {
+  background-color: yellow;
+}
+
 /* JSON */
 .json-markup {
   line-height: 17px;

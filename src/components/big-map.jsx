@@ -21,6 +21,13 @@ var BigMap = React.createClass({
           var entity = _.find(entitiesCollection, {x: i, y: j});
           var location = _.find(this.props.locations, {x: i, y: j});
           var item = _.find(itemsCollection, {x: i, y: j});
+          var target = false;
+          for (var x in this.props.targets) {
+            if (this.props.targets[x].x === i && this.props.targets[x].y === j) {
+              target = true;
+              break;
+            }
+          }
           var key = i + '-' + j;
 
           var isMyCharacter = (i === this.props.currentX &&
@@ -30,7 +37,8 @@ var BigMap = React.createClass({
                            key={key}
                            entity={entity}
                            location={location}
-                           item={item} />);
+                           item={item}
+                           target={target} />);
         }
         rows.push(<tr key={i}>{items}</tr>);
       }

@@ -49,7 +49,8 @@ var Game = React.createClass({
              entities={this.state.entities}
              locations={this.state.locations}
              items={this.state.items}
-             mapName={this.state.currentMap} />
+             mapName={this.state.currentMap}
+             targets={this.state.targets} />
       </div>
     </div>;
   },
@@ -160,7 +161,7 @@ var Game = React.createClass({
     var nextMap;
     var nextCornerLeftTop = {},
         nextCornerRightBottom = {};
-    if (localStorage.isKeySaved(level.map, 'bigMap') && this.state.currentMap != level.map) {
+    if (localStorage.isKeySaved(level.map, 'bigMap') && this.state.currentMap !== level.map) {
       nextMap = localStorage.getLocalStorageKey(level.map, 'bigMap');
     } else if (this.state.currentMap === level.map) {
       nextMap = _.clone(this.state.bigMap);
@@ -211,7 +212,8 @@ var Game = React.createClass({
       currentY: level.y,
       cornerLeftTop: nextCornerLeftTop,
       cornerRightBottom: nextCornerRightBottom,
-      firstStart: false
+      firstStart: false,
+      targets: level.targets
     });
   },
 

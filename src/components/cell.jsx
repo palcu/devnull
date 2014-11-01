@@ -17,7 +17,8 @@ var Cell = React.createClass({
       'unwalkable': (elementInMap === '$'),
       'entity-monster': this.props.entity.type === 'monster',
       'location': this.props.location,
-      'item': this.props.item
+      'item': this.props.item,
+      'target': this.props.target
     });
 
     return <td className={classes} onClick={this.cellOnClick}>
