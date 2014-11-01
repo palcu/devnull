@@ -1,4 +1,11 @@
-Don't forget to make `session-key.js` from the example.
+React client for the Escape from /dev/null competition.
+
+# Installation
+
+- duplicate `session-key.example.js` into `session-key.js` and add your key
+- `npm install`
+- `watchify src/game.jsx -o build/bundle.js`
+- `open index.html`
 
 # Keyboard Shorcuts
 
@@ -6,8 +13,9 @@ Don't forget to make `session-key.js` from the example.
 * `w/a/s/d` - dig
 * `i/o/k/l` - move diagonally
 * `z/x` - up/down staircase
+* `p` - planeshift
 
-## Still to implement
+## Features
 
 - [x] show inventory
 - [x] drop
@@ -20,8 +28,8 @@ Don't forget to make `session-key.js` from the example.
 - [x] when a monster is killed, issue a notification
 - [x] level up
 - [x] highscores
-- [ ] planeshift
+- [x] planeshift
 
-## Bugs
+## ~~Bugs~~ Awesome Features
 
-- [ ] the map is reversed... so what?!?
+- the map is reversed... but the UI fits in one screen :-P
