@@ -1,10 +1,12 @@
-React client for the Escape from /dev/null competition.
+React client for the Escape from /dev/null competition. It saves all the level
+information in `localStorage`, so if you close your browser, you still have a
+map and where are monsters.
 
 # Installation
 
 - duplicate `session-key.example.js` into `session-key.js` and add your key
 - `npm install`
-- `watchify src/game.jsx -o build/bundle.js`
+- `watchify src/all-that-is.jsx -o build/bundle.js`
 - `open index.html`
 
 # Keyboard Shorcuts
