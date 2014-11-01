@@ -2,6 +2,10 @@
 
 var React = require('react');
 
+
+/**
+ * Show a character with it's select and delete links.
+ */
 var Character = React.createClass({
   render: function() {
     return <li onClick={this.onCharacterClick}>

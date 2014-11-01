@@ -4,6 +4,11 @@ var React = require('react'),
     Cell = require('./cell.jsx'),
     _ = require('lodash');
 
+
+/**
+ * Show my awesome map. At first it is only 5x5 size, but expands as the
+ * character visits the margins.
+ */
 var BigMap = React.createClass({
   getDefaultProps: function() {
     return {area: [[]]};

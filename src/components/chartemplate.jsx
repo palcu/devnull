@@ -5,6 +5,10 @@ var React = require('react'),
     getUrl = require('../lib/get-url.js'),
     jsonMarkup = require('json-markup');
 
+
+/**
+ * This is a test component to display an API request.
+ */
 var CharTemplate = React.createClass({
   getInitialState: function() {
     return {charTemplate: {}};

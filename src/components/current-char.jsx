@@ -7,6 +7,11 @@ var React = require('react'),
     Constants = require('../constants.js'),
     Inventory = require('./inventory.jsx');
 
+
+/**
+ * This component deals with showing useful information from the `getcharacter`
+ * API call and showing the inventory.
+ */
 var CurrentChar = React.createClass({
   getInitialState: function() {
     return {

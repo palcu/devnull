@@ -3,6 +3,10 @@
 var React = require('react'),
     InventoryItem = require('./inventory-item.jsx');
 
+
+/**
+ * Show a list of inventory items and two unwield links.
+ */
 var Inventory = React.createClass({
   render: function() {
     var items = [];

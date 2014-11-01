@@ -1,3 +1,6 @@
+/**
+ * Take care you are allowed only 20 requests/sec.
+ */
 module.exports = {
   CURRENT_CHAR_INTERVAL: 2000,
   SCAN_INTERVAL: 1000,

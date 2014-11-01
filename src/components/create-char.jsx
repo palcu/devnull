@@ -4,6 +4,10 @@ var React = require('react'),
     $ = require('jquery'),
     getUrl = require('../lib/get-url.js');
 
+
+/**
+ * Just a form where you can create a character.
+ */
 var CreateCharacter = React.createClass({
   getInitialState: function() {
     return {

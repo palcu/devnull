@@ -4,6 +4,14 @@ var React = require('react'),
     cx = require('react/addons').addons.classSet;
 
 
+/**
+ * Add CSS classes for each type of cell. Also show:
+ * @ - if there is a monster
+ * # - still not discovered tiles
+ * $ - unwalkable tiles
+ * I - inventory items
+ * Various other letters for other stuff.
+ */
 var Cell = React.createClass({
   getDefaultProps: function() {
     return {entity: {}};

@@ -1,6 +1,9 @@
 /** @jsx React.DOM */
 
 
+/**
+ * The biggest component with most of the logic.
+ */
 var React = require('react'),
     Party = require('./components/party.jsx'),
     CreateCharacter = require('./components/create-char.jsx'),
@@ -55,6 +58,12 @@ var Game = React.createClass({
     </div>;
   },
 
+  /**
+   * Here is heart of the game. Each of these 4 methods:
+   * - at start check if there is available information in localStorage and use it
+   * - when a `scan` payload is received, update the React state and update
+   * the local storage information with raw data
+   */
   onReceiveLevel: function(level) {
     this._parseMap(level);
     this._parseEntities(level);
@@ -157,6 +166,10 @@ var Game = React.createClass({
     return stuff;
   },
 
+  /**
+   * I always keep the map as a 100x100 matrix in the memory. I use cornerLeftTop
+   * and cornerRightBottom to show only the relevant part of the map.
+   */
   _parseMap: function(level) {
     var nextMap;
     var nextCornerLeftTop = {},
@@ -226,10 +239,6 @@ var Game = React.createClass({
       }
     }
     return m;
-  },
-
-  _isDead: function(monster) {
-    console.log(monster);
   }
 });
 

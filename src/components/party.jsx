@@ -6,6 +6,10 @@ var React = require('react'),
     Character = require('./character.jsx'),
     Constants = require('../constants.js');
 
+
+/**
+ * Show the current characters and show a delete button for each one.
+ */
 var Party = React.createClass({
   getInitialState: function() {
     return {party: []};

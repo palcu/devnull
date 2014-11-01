@@ -6,6 +6,10 @@ var React = require('react'),
     localStorage = require('../lib/local-storage.js'),
     $ = require('jquery');
 
+
+/**
+ * Show an item with it's specific actions.
+ */
 var InventoryItem = React.createClass({
   getInitialState: function() {
     var attributes = localStorage.getLocalStorageKey('inventory', this.props.id) || {};

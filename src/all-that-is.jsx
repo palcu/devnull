@@ -9,6 +9,12 @@ var React = require('react'),
     log = require('log-with-style'),
     getUrl = require('./lib/get-url.js');
 
+
+/**
+ * I wanted `game` to be the highest component in the design. But, then I wanted to
+ * send the current character from localStorage, it was simpler to make a `god`
+ * component above `game`.
+ */
 var AllThatIs = React.createClass({
   mixins: [ControlCharMixin],
 

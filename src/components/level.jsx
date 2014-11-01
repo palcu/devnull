@@ -1,5 +1,10 @@
 /** @jsx React.DOM */
 
+
+/**
+ * Show useful information like monsters or items around, before passing the
+ * received payload from the `scan` API call to the game.
+ */
 var React = require('react'),
     $ = require('jquery'),
     getUrl = require('../lib/get-url.js'),

@@ -3,9 +3,13 @@ var Mousetrap = require('mousetrap'),
     $ = require('jquery'),
     log = require('log-with-style');
 
-// TODO @palcu: take the response and pass it somehow to level component
+
 // TODO @palcu: DRY this fucking code
 
+/**
+ * Bind these keyboard shortcuts using mousetrap to different actions. Also,
+ * I've added here the logic for showing when a monster is dead in battle.
+ */
 module.exports = {
   componentWillMount: function() {
     Mousetrap.bind('up', function(e) {
