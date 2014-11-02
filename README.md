@@ -8,6 +8,7 @@ map and where are monsters.
 
 - duplicate `session-key.example.js` into `session-key.js` and add your key
 - `npm install`
+- `npm install -g watchify`
 - `watchify src/all-that-is.jsx -o build/bundle.js`
 - `open index.html`
 
