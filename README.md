@@ -1,4 +1,4 @@
-React client for the Escape from /dev/null competition. It saves all the level
+React client for the [Escape from /dev/null](http://palcu.blogspot.com/2014/11/google-escape-from-devnull.html) competition. It saves all the level
 information in `localStorage`, so if you close your browser, you still have a
 map and where are monsters.
 
